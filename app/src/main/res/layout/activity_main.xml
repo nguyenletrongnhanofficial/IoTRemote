@@ -6,14 +6,30 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Xin chào mình là Nhân"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.455"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="525dp"
+        android:layout_height="903dp"
+        android:background="#090909"
+        app:srcCompat="@drawable/img" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="130dp"
+        android:layout_height="95dp"
+        android:background="#121111"
+        app:srcCompat="@drawable/logouit"
+        tools:layout_editor_absoluteX="140dp"
+        tools:layout_editor_absoluteY="392dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="280dp"
+        android:layout_height="57dp"
+        android:fontFamily="Urbanist"
+        android:text="Đăng KÍ"
+        tools:layout_editor_absoluteX="65dp"
+        tools:layout_editor_absoluteY="646dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
