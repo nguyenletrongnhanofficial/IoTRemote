@@ -15,15 +15,17 @@
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/send_1"
+            android:src="@drawable/vector__5_"
             android:layout_margin="8dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="lua chon 1"
+            android:text="Solar Derotterdam "
             android:layout_gravity="center_vertical"
-            android:padding="8dp"/>
+            android:padding="8dp"
+            android:fontFamily="@font/roboto_bold"
+            android:textColor="@color/black"/>
     </LinearLayout>
 
     <LinearLayout
@@ -34,18 +36,15 @@
         android:background="?android:attr/selectableItemBackground"
         android:padding="8dp">
 
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/send_1"
-            android:layout_margin="8dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="lua chon 1"
+            android:text="Details"
             android:layout_gravity="center_vertical"
-            android:padding="8dp"/>
+            android:padding="8dp"
+            android:fontFamily="@font/roboto_bold"
+            android:textColor="@color/black"/>
 
     </LinearLayout>
 
@@ -53,22 +52,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:id="@+id/uploadLinearLaySout"
+        android:id="@+id/uploadLinearLayout"
         android:background="?android:attr/selectableItemBackground"
         android:padding="8dp">
 
         <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/send_1"
+            android:layout_width="21dp"
+            android:layout_height="21dp"
+            android:src="@drawable/save_1"
             android:layout_margin="8dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="lua chon 1"
+            android:text="System efficiency (%)\n93"
             android:layout_gravity="center_vertical"
             android:padding="8dp"/>
+
 
     </LinearLayout>
 
@@ -81,37 +81,15 @@
         android:padding="8dp">
 
         <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/send_1"
+            android:layout_width="21dp"
+            android:layout_height="21dp"
+            android:src="@drawable/vector__6_"
             android:layout_margin="8dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="lua chon 1"
-            android:layout_gravity="center_vertical"
-            android:padding="8dp"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:id="@+id/delete"
-        android:background="?android:attr/selectableItemBackground"
-        android:padding="8dp">
-
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/send_1"
-            android:layout_margin="8dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="lua chon 1"
+            android:text="Installed Capacity (kW) \n16.52"
             android:layout_gravity="center_vertical"
             android:padding="8dp"/>
     </LinearLayout>
