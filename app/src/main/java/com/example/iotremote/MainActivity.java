@@ -9,6 +9,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.quen_mat_khau);
         //mmm
         //nnnn
@@ -16,5 +17,10 @@ public class MainActivity extends AppCompatActivity {
         //333333
         //Pham Van Thang Nhu trai
         //444444
+
+        setContentView(R.layout.map);
+
+
     }
+
 }
