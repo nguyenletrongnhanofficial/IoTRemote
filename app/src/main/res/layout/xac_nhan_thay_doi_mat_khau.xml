@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="222dp"
+        android:layout_height="55dp"
+
+        android:fontFamily="@font/roboto"
+        android:text="Mật khẩu đã được thay đổi thành công."
+        android:textAlignment="center"
+        android:textColor="#8391A1"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="358dp"
+        android:layout_height="49dp"
+        android:fontFamily="@font/roboto"
+        android:text="Mật khẩu đã được thay đổi !"
+        android:textColor="#000000"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4"
+        app:layout_constraintVertical_bias="0.058" />
+
+    <androidx.constraintlayout.utils.widget.MotionButton
+        android:layout_width="303dp"
+        android:layout_height="62dp"
+        android:layout_marginBottom="188dp"
+        android:backgroundTint="#000000"
+        android:fontFamily="@font/roboto"
+        android:text="Quay lại đăng nhập"
+        android:textColor="#FFFFFF"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints">
+
+    </androidx.constraintlayout.utils.widget.MotionButton>
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="152dp"
+        android:layout_height="124dp"
+        android:layout_marginTop="196dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/usccessmark" />
+</androidx.constraintlayout.widget.ConstraintLayout>
