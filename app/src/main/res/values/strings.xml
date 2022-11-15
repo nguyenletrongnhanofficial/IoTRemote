@@ -4,4 +4,10 @@
     <string name="kh_ng_nh_n_c_m">Không nhận được mã?</string>
     <string name="g_i_l_i">Gửi lại</string>
     <string name="x_c_nh_n">Xác nhận</string>
+    <string name="action_home">Action Home</string>
+    <string name="button_2">Button 2</string>
+    <string name="button_pulse">Button Pulse</string>
+    <string name="button_personal">Button Personal</string>
+    <string name="button_menu">Button Menu</string>
+    <string name="button_home">Button Home</string>
 </resources>

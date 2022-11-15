@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/actionhome"
+        android:title="@string/button_home"
+        android:icon="@drawable/home"
+        />
+    <item
+        android:id="@+id/buttonpulse"
+        android:title="@string/button_pulse"
+        android:icon="@drawable/pulse"
+        />
+    <item
+        android:id="@+id/buttonmenu"
+        android:title="@string/button_menu"
+        android:icon="@drawable/menu"
+        />
+    <item
+        android:id="@+id/buttonpersonal"
+        android:title="@string/button_personal"
+        android:icon="@drawable/user"/>
+
+
+
+
+
+</menu>
