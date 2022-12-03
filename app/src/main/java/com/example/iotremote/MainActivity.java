@@ -1,12 +1,16 @@
 package com.example.iotremote;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.preference.Preference;
 import androidx.preference.PreferenceManager;
 
 //import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.widget.Toast;
+
+import com.example.iotremote.api.ApiService;
+import com.example.iotremote.model.Center;
+import com.example.iotremote.model.Currency;
 
 import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
@@ -19,10 +23,14 @@ import org.osmdroid.views.overlay.ItemizedOverlayWithFocus;
 import org.osmdroid.views.overlay.OverlayItem;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     private MapView map;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +42,38 @@ public class MainActivity extends AppCompatActivity {
         map = findViewById(R.id.map);
         map.setTileSource(TileSourceFactory.MAPNIK);
         map.setBuiltInZoomControls(true);
-        GeoPoint startPoint = new GeoPoint(10.86815, 106.79931);
+//        GeoPoint startPoint = new GeoPoint(10.86815, 106.79931);
         IMapController mapController = map.getController();
         mapController.setZoom(14.0);
-        mapController.setCenter(startPoint);
+
+        ApiService.apiService.loadMap().enqueue(new Callback<Currency>() {
+            @Override
+            public void onResponse(Call<Currency> call, Response<Currency> response) {
+                Toast.makeText(MainActivity.this, "Call API Thanh Cong!", Toast.LENGTH_LONG).show();
+                Currency currency = response.body();
+
+                List<Center> centerList = currency.getOptions().getDefaults().getCenters();
+
+//============== Start
+
+                // => Bốn dòng bên dưới bị lỗi, t truy xuất phần tử đầu và cuối của center để truyền vào tọa độ
+//                Float kd = centerList.get(0);
+//                Float vd = centerList.get(1);
+//                GeoPoint startPoint = new GeoPoint(kd, vd);
+//                mapController.setCenter(startPoint);
+
+//============== End
+
+            }
+
+            @Override
+            public void onFailure(Call<Currency> call, Throwable t) {
+                Toast.makeText(MainActivity.this, "Call API Map That Bai!", Toast.LENGTH_LONG).show();
+            }
+        });
+
+
+        //end
 
         ArrayList<OverlayItem> items = new ArrayList<>();
         OverlayItem home = new OverlayItem("Rallo's office", "my office", new GeoPoint(10.87304, 106.80524));
@@ -58,6 +94,8 @@ public class MainActivity extends AppCompatActivity {
         mOverlay.setFocusItemsOnTap(true);
         map.getOverlays().add(mOverlay);
     }
+
+
     @Override
     protected void onPause() {
         super.onPause();
