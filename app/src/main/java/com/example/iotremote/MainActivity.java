@@ -73,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         //end
 
         ArrayList<OverlayItem> items = new ArrayList<>();
