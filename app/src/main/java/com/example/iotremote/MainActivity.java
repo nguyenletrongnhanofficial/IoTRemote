@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 //        GeoPoint startPoint = new GeoPoint(10.86815, 106.79931);
         IMapController mapController = map.getController();
         mapController.setZoom(16.0);
-
+//============== Start call map bounds
         ApiService.apiService.loadMap().enqueue(new Callback<Currency>() {
             @Override
             public void onResponse(Call<Currency> call, Response<Currency> response) {
@@ -53,27 +53,40 @@ public class MainActivity extends AppCompatActivity {
                 Currency currency = response.body();
                 List<Float> centerList = currency.getOptions().getDefaults().getBounds();
                 //Log.d("API CALL", centerList.get(1)+""); -> Dòng này để kiểm tra API call về
-
-//============== Start
-
                 // => Bốn dòng bên dưới bị lỗi, t truy xuất phần tử đầu và cuối của center để truyền vào tọa độ
                 Float kd = centerList.get(0);
                 Float vd = centerList.get(1);
                 GeoPoint startPoint = new GeoPoint(vd, kd);
                 mapController.setCenter(startPoint);
-
-//============== End
-
             }
-
             @Override
             public void onFailure(Call<Currency> call, Throwable t) {
                 Toast.makeText(MainActivity.this, "Call API Map That Bai!", Toast.LENGTH_LONG).show();
                 Log.d("API CALL", t.getMessage().toString());
             }
         });
-
-        //end
+//==============>end call map bounds
+//============== Start call asset
+//        ApiService.apiService.loadMap().enqueue(new Callback<Currency>() {
+//            @Override
+//            public void onResponse(Call<Currency> call, Response<Currency> response) {
+//                Toast.makeText(MainActivity.this, "Call API Thanh Cong!", Toast.LENGTH_LONG).show();
+//                Currency currency = response.body();
+//                List<Float> centerList = currency.getOptions().getDefaults().getBounds();
+//                //Log.d("API CALL", centerList.get(1)+""); -> Dòng này để kiểm tra API call về
+//                // => Bốn dòng bên dưới bị lỗi, t truy xuất phần tử đầu và cuối của center để truyền vào tọa độ
+//                Float kd = centerList.get(0);
+//                Float vd = centerList.get(1);
+//                GeoPoint startPoint = new GeoPoint(vd, kd);
+//                mapController.setCenter(startPoint);
+//            }
+//            @Override
+//            public void onFailure(Call<Currency> call, Throwable t) {
+//                Toast.makeText(MainActivity.this, "Call API Map That Bai!", Toast.LENGTH_LONG).show();
+//                Log.d("API CALL", t.getMessage().toString());
+//            }
+//        });
+//==============>end call asset
 
         ArrayList<OverlayItem> items = new ArrayList<>();
         OverlayItem home = new OverlayItem("Rallo's office", "my office", new GeoPoint(10.87304, 106.80524));
