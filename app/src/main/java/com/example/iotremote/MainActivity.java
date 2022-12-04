@@ -6,6 +6,7 @@ import androidx.preference.PreferenceManager;
 //import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.iotremote.api.ApiService;
@@ -50,9 +51,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Currency> call, Response<Currency> response) {
                 Toast.makeText(MainActivity.this, "Call API Thanh Cong!", Toast.LENGTH_LONG).show();
+                Log.d("API CALL", response.code()+"");
                 Currency currency = response.body();
-
-                List<Center> centerList = currency.getOptions().getDefaults().getCenters();
+                Log.d("API CALL", currency.options+"");
+//                Currency currency = response.body();
+//
+//                List<Center> centerList = currency.getOptions().getDefaults().getCenters();
 
 //============== Start
 
@@ -69,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<Currency> call, Throwable t) {
                 Toast.makeText(MainActivity.this, "Call API Map That Bai!", Toast.LENGTH_LONG).show();
+                Log.d("API CALL", t.getMessage().toString());
             }
         });
 
