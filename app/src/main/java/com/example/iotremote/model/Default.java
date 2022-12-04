@@ -1,72 +1,29 @@
 package com.example.iotremote.model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Default {
+    @SerializedName("bounds")
+    @Expose
+    private List<Float> bounds;
+    @SerializedName("centers")
+    @Expose
+    private List<Float> centers;
 
-    public List<Bounds> getBounds() {
+    public List<Float> getBounds() {
         return bounds;
     }
-
-    public void setBounds(List<Bounds> bounds) {
+    public void setBounds(List<Float> bounds) {
         this.bounds = bounds;
     }
-
-    public float getZoom() {
-        return zoom;
-    }
-
-    public void setZoom(float zoom) {
-        this.zoom = zoom;
-    }
-
-    public float getMaxZoom() {
-        return maxZoom;
-    }
-
-    public void setMaxZoom(float maxZoom) {
-        this.maxZoom = maxZoom;
-    }
-
-    public boolean isBoxZoom() {
-        return boxZoom;
-    }
-
-    public void setBoxZoom(boolean boxZoom) {
-        this.boxZoom = boxZoom;
-    }
-
-    public String getGeocodeUrl() {
-        return geocodeUrl;
-    }
-
-    public void setGeocodeUrl(String geocodeUrl) {
-        this.geocodeUrl = geocodeUrl;
-    }
-
-    public String getMinZoom() {
-        return minZoom;
-    }
-
-    public void setMinZoom(String minZoom) {
-        this.minZoom = minZoom;
-    }
-
-
-    public List<Center> getCenters() {
+    public List<Float> getCenters() {
         return centers;
     }
-
-    public void setCenters(List<Center> centers) {
+    public void setCenters(List<Float> centers) {
         this.centers = centers;
     }
-
-    private List<Center>centers;
-    private List<Bounds> bounds;
-    private float zoom;
-    private float maxZoom;
-    private boolean boxZoom;
-    private String geocodeUrl;
-    private String minZoom;
 }
