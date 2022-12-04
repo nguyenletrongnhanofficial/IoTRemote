@@ -40,7 +40,8 @@
         app:layout_constraintTop_toBottomOf="@id/tv_1"
         app:layout_constraintBottom_toTopOf="@id/et_email"
         app:layout_constraintEnd_toEndOf="parent"
-        android:fontFamily="@font/roboto"/>
+        android:fontFamily="@font/roboto"
+        android:inputType="textEmailAddress"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -53,7 +54,8 @@
         android:hint="@string/sign_up_3"
         app:layout_constraintTop_toBottomOf="@+id/et_4"
         app:layout_constraintBottom_toTopOf="@+id/tv_5"
-        android:fontFamily="@font/roboto"/>
+        android:fontFamily="@font/roboto"
+        android:inputType="textEmailAddress"/>
     <EditText
         android:id="@+id/tv_5"
         android:password="true"
@@ -68,7 +70,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:fontFamily="@font/roboto"/>
+        android:fontFamily="@font/roboto"
+        android:inputType="textPassword"/>
     <EditText
         android:id="@+id/et_password_2"
         android:password="true"
@@ -83,7 +86,8 @@
         android:hint="@string/sign_up_5"
         app:layout_constraintTop_toBottomOf="@id/tv_5"
         app:layout_constraintBottom_toTopOf="@id/btn_sign_up"
-        android:fontFamily="@font/roboto"></EditText>
+        android:fontFamily="@font/roboto"
+        android:inputType="textPassword"></EditText>
     <Button
         android:id="@+id/btn_sign_up"
         android:layout_width="match_parent"
@@ -114,7 +118,7 @@
         app:layout_constraintTop_toBottomOf="@id/tv_22"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/btn_sign_up_now"></ImageButton>
+        app:layout_constraintBottom_toTopOf="@id/btn_sign_in_now"></ImageButton>
     <ImageButton
         android:id="@+id/btn_facebook"
         android:layout_width="26dp"
@@ -123,7 +127,7 @@
         app:layout_constraintTop_toBottomOf="@id/tv_22"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/btn_google_sign_up"
-        app:layout_constraintBottom_toTopOf="@id/btn_sign_up_now"></ImageButton>
+        app:layout_constraintBottom_toTopOf="@id/btn_sign_in_now"></ImageButton>
     <ImageButton
         android:id="@+id/btn_apple"
         android:layout_width="43dp"
@@ -132,9 +136,9 @@
         app:layout_constraintTop_toBottomOf="@id/tv_22"
         app:layout_constraintStart_toEndOf="@id/btn_google_sign_up"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/btn_sign_up_now"></ImageButton>
+        app:layout_constraintBottom_toTopOf="@id/btn_sign_in_now"></ImageButton>
     <Button
-        android:id="@+id/btn_sign_up_now"
+        android:id="@+id/btn_sign_in_now"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/ngoc_backgr_white"

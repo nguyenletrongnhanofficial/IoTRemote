@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "642783011467",
+    "project_id": "mobilelogin-480ed",
+    "storage_bucket": "mobilelogin-480ed.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:642783011467:android:1c344c2c8605041c686a8e",
+        "android_client_info": {
+          "package_name": "com.example.iotremote"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "642783011467-03f8bbnr21o5rjcr23rbd72so51libae.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXNugIew-LbjB1dm7RbT18E5r4rli3sj4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "642783011467-03f8bbnr21o5rjcr23rbd72so51libae.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
