@@ -1,6 +1,5 @@
 package com.example.iotremote.api;
 
-import com.example.iotremote.model.Center;
 import com.example.iotremote.model.Currency;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
