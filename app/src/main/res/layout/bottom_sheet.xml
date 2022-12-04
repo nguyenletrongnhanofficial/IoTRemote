@@ -9,7 +9,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:id="@+id/download"
-        android:background="android:attr/selectableItemBackground"
         android:padding="8dp">
 
         <ImageView
