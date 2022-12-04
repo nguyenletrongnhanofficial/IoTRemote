@@ -3,6 +3,7 @@ package com.example.iotremote.model;
 import com.google.gson.annotations.SerializedName;
 
 public class Options {
+
     public Default getDefaults() {
         return defaults;
     }

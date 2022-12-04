@@ -6,19 +6,19 @@ import java.util.function.ObjLongConsumer;
 
 public class Currency {
     @SerializedName("options")
-    public Object options;
+    private Options options;
 //    private Options options;
 //    private String attribution;
 //    private String format;
 //    private String type;
 //
-//    public Options getOptions() {
-//        return options;
-//    }
-//
-//    public void setOptions(Options options) {
-//        this.options = options;
-//    }
+    public Options getOptions() {
+        return options;
+    }
+
+    public void setOptions(Options options) {
+        this.options = options;
+    }
 //
 //    public String getAttribution() {
 //        return attribution;

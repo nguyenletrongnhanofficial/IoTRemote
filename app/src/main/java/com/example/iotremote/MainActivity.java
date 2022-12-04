@@ -10,7 +10,6 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.iotremote.api.ApiService;
-import com.example.iotremote.model.Center;
 import com.example.iotremote.model.Currency;
 
 import org.osmdroid.api.IMapController;
@@ -45,26 +44,23 @@ public class MainActivity extends AppCompatActivity {
         map.setBuiltInZoomControls(true);
 //        GeoPoint startPoint = new GeoPoint(10.86815, 106.79931);
         IMapController mapController = map.getController();
-        mapController.setZoom(14.0);
+        mapController.setZoom(16.0);
 
         ApiService.apiService.loadMap().enqueue(new Callback<Currency>() {
             @Override
             public void onResponse(Call<Currency> call, Response<Currency> response) {
                 Toast.makeText(MainActivity.this, "Call API Thanh Cong!", Toast.LENGTH_LONG).show();
-                Log.d("API CALL", response.code()+"");
                 Currency currency = response.body();
-                Log.d("API CALL", currency.options+"");
-//                Currency currency = response.body();
-//
-//                List<Center> centerList = currency.getOptions().getDefaults().getCenters();
+                List<Float> centerList = currency.getOptions().getDefaults().getBounds();
+                //Log.d("API CALL", centerList.get(1)+""); -> Dòng này để kiểm tra API call về
 
 //============== Start
 
                 // => Bốn dòng bên dưới bị lỗi, t truy xuất phần tử đầu và cuối của center để truyền vào tọa độ
-//                Float kd = centerList.get(0);
-//                Float vd = centerList.get(1);
-//                GeoPoint startPoint = new GeoPoint(kd, vd);
-//                mapController.setCenter(startPoint);
+                Float kd = centerList.get(0);
+                Float vd = centerList.get(1);
+                GeoPoint startPoint = new GeoPoint(vd, kd);
+                mapController.setCenter(startPoint);
 
 //============== End
 
