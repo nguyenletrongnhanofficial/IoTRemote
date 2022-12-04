@@ -11,7 +11,7 @@
     <string name="button_menu">Button Menu</string>
     <string name="button_home">Button Home</string>
     <string name="sign_in_1">Welcome back! Nice to see you</string>
-    <string name="sign_in_2">Email / Phone number</string>
+    <string name="sign_in_2">Email</string>
     <string name="sign_in_3">Your Password</string>
     <string name="sign_in_4">Forget Password?</string>
     <string name="sign_in_5">Sign in</string>
@@ -19,12 +19,12 @@
     <string name="sign_in_7">No account? Sign up now</string>
     <string name="sign_up_1">Welcome! Sign up to begin</string>
     <string name="sign_up_2">Username</string>
-    <string name="sign_up_3">Email or Phone number</string>
+    <string name="sign_up_3">Email</string>
     <string name="sign_up_4">Password</string>
     <string name="sign_up_5">Confirm Password</string>
     <string name="sign_up_6">Sign up</string>
     <string name="sign_up_7">Sign up with</string>
-    <string name="sign_up_8">Already have account? Sign up now!</string>
+    <string name="sign_up_8">Already have account? Sign in now!</string>
     <string name="map_1">Map Location</string>
     <string name="map_2">null</string>
     <string name="map_3">null</string>
