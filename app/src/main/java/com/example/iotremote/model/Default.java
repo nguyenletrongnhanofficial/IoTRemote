@@ -9,21 +9,21 @@ import java.util.List;
 public class Default {
     @SerializedName("bounds")
     @Expose
-    private List<Float> bounds;
+    private ArrayList<Float> bounds;
     @SerializedName("centers")
     @Expose
-    private List<Float> centers;
+    private ArrayList<Float> centers;
 
-    public List<Float> getBounds() {
+    public ArrayList<Float> getBounds() {
         return bounds;
     }
-    public void setBounds(List<Float> bounds) {
+    public void setBounds(ArrayList<Float> bounds) {
         this.bounds = bounds;
     }
-    public List<Float> getCenters() {
+    public ArrayList<Float> getCenters() {
         return centers;
     }
-    public void setCenters(List<Float> centers) {
+    public void setCenters(ArrayList<Float> centers) {
         this.centers = centers;
     }
 }
