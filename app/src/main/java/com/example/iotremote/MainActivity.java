@@ -4,11 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.example.iotremote.api.ApiService;
 import com.example.iotremote.api.AssetAPI;
-import com.example.iotremote.model.AssetCs;
-import com.example.iotremote.model.Currency;
+import com.example.iotremote.assetclass.AssetCs;
+import com.example.iotremote.mapclass.Currency;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
@@ -49,6 +50,26 @@ public class MainActivity extends AppCompatActivity {
             public void onFailure(Call<AssetCs> call, Throwable t) {
             }
         });
+        AssetAPI.assetAPI.getAsset("2UZPM2Mvu11Xyq5jCWNMX1").enqueue(new Callback<AssetCs>() {
+            @Override
+            public void onResponse(Call<AssetCs> call, Response<AssetCs> response) {
+                AssetCs asset = response.body();
+                loadAssetToMap(asset);
+            }
+            @Override
+            public void onFailure(Call<AssetCs> call, Throwable t) {
+            }
+        });
+        AssetAPI.assetAPI.getAsset("4cdWlxEvmDRBBDEc2HRsaF").enqueue(new Callback<AssetCs>() {
+            @Override
+            public void onResponse(Call<AssetCs> call, Response<AssetCs> response) {
+                AssetCs asset = response.body();
+                loadAssetToMap(asset);
+            }
+            @Override
+            public void onFailure(Call<AssetCs> call, Throwable t) {
+            }
+        });
 //==============>end call asset
 //============== Start call map bounds
         ApiService.apiService.loadMap().enqueue(new Callback<Currency>() {
@@ -70,12 +91,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 //==============>end call map bounds
-//====start demo show map
-//        OverlayItem home = new OverlayItem("Rallo's office", "my office", new GeoPoint(10.87304, 106.80524));
-//        Drawable m = home.getMarker(0);
-//        items.add(home);
-//        items.add(new OverlayItem("Rallo's office", "my office", new GeoPoint(10.87304, 106.70524)));
-//====end demo show map
     }
 
 
@@ -90,10 +105,48 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         map.onResume();
     }
-    private void showBottomSheetDialog() {
+    private void showBottomSheetDialog(AssetCs assetRtn) {
+        TextView hum_txt, rainfall_txt, sunal, sunaz, sunir, sunze, temp_txt, uv_txt, winddir, windsp;
         final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
         bottomSheetDialog.setContentView(R.layout.bottom_sheet);
+        temp_txt = bottomSheetDialog.findViewById(R.id.asset_temp);
+        hum_txt = bottomSheetDialog.findViewById(R.id.asset_hum);
+        rainfall_txt = bottomSheetDialog.findViewById(R.id.asset_rainfall);
+        sunal = bottomSheetDialog.findViewById(R.id.asset_sunal);
+        sunaz = bottomSheetDialog.findViewById(R.id.asset_sunaz);
+        sunir = bottomSheetDialog.findViewById(R.id.asset_sunir);
+        sunze = bottomSheetDialog.findViewById(R.id.asset_sunze);
+        uv_txt = bottomSheetDialog.findViewById(R.id.asset_uv);
+        winddir = bottomSheetDialog.findViewById(R.id.asset_winddir);
+        windsp = bottomSheetDialog.findViewById(R.id.asset_windsp);
+        double temp_db = assetRtn.getAttributes().getTemperature().getValue().doubleValue();
+        double hum_db = assetRtn.getAttributes().getHumidity().getValue().doubleValue();
+        double rainfall_db = assetRtn.getAttributes().getRainfall().getValue().doubleValue();
+        double sunal_db = assetRtn.getAttributes().getSunAltitude().getValue().doubleValue();
+        double sunaz_db = assetRtn.getAttributes().getSunAzimuth().getValue().doubleValue();
+        double sunir_db = assetRtn.getAttributes().getSunIrradiance().getValue().doubleValue();
+        double sunze_db = assetRtn.getAttributes().getSunZenith().getValue().doubleValue();
+        double uv_db = assetRtn.getAttributes().getUVIndex().getValue().doubleValue();
+        double winddir_db = assetRtn.getAttributes().getWindDirection().getValue().doubleValue();
+        double windsp_db = assetRtn.getAttributes().getWindSpeed().getValue().doubleValue();
+        temp_txt.setText(""+check_null_data(temp_db));
+        hum_txt.setText(""+check_null_data(hum_db));
+        rainfall_txt.setText(""+check_null_data(rainfall_db));
+        sunal.setText(""+check_null_data(sunal_db));
+        sunaz.setText(""+check_null_data(sunaz_db));
+        sunir.setText(""+check_null_data(sunir_db));
+        sunze.setText(""+check_null_data(sunze_db));
+        uv_txt.setText(""+check_null_data(uv_db));
+        winddir.setText(""+check_null_data(winddir_db));
+        windsp.setText(""+check_null_data(windsp_db));
         bottomSheetDialog.show();
+    }
+    private String check_null_data(double a){
+        String f = ""+a;
+        if (a != -0.1)
+            return f;
+        else
+            return "No data";
     }
     private void loadAssetToMap(AssetCs assetRtn){
         ArrayList<Float> assetInfo = assetRtn.getAttributes().getLocation().getValue().getCoordinates();
@@ -103,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
         ItemizedOverlayWithFocus<OverlayItem> mOverlay = new ItemizedOverlayWithFocus<OverlayItem>(getApplicationContext(), items, new ItemizedIconOverlay.OnItemGestureListener<OverlayItem>() {
             @Override
             public boolean onItemSingleTapUp(int index, OverlayItem item) {
-                showBottomSheetDialog();
+                showBottomSheetDialog(assetRtn);
                 //Toast.makeText(MainActivity.this, "Bottom Sheet Thanh Cong!", Toast.LENGTH_LONG).show();
                 return true;
             }

@@ -1,4 +1,4 @@
-package com.example.iotremote.model;
+package com.example.iotremote.assetclass;
 
 import com.google.gson.annotations.SerializedName;
 

@@ -1,8 +1,6 @@
-package com.example.iotremote.model;
+package com.example.iotremote.mapclass;
 
 import com.google.gson.annotations.SerializedName;
-
-import java.util.function.ObjLongConsumer;
 
 public class Currency {
     @SerializedName("options")
