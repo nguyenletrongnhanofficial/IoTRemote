@@ -1,6 +1,6 @@
 package com.example.iotremote.api;
 
-import com.example.iotremote.model.AssetCs;
+import com.example.iotremote.assetclass.AssetCs;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

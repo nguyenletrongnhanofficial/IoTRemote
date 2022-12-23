@@ -1,4 +1,4 @@
-package com.example.iotremote.model;
+package com.example.iotremote.assetclass;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
@@ -64,4 +64,3 @@ public class AssetCs{
         this.attributes = attributes; }
     Attributes attributes;
 }
-
