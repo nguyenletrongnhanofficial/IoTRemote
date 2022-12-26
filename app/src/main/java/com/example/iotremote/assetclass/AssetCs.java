@@ -3,6 +3,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 public class AssetCs{
+
     @SerializedName("id")
     public String getId() {
         return this.id; }
