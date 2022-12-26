@@ -14,10 +14,11 @@
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/vector__5_"
+            android:src="@drawable/vector__6_"
             android:layout_margin="5dp"/>
 
         <TextView
+            android:id="@+id/name_asset"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Weather Asset"
@@ -88,7 +89,7 @@
         <ImageView
             android:layout_width="21dp"
             android:layout_height="21dp"
-            android:src="@drawable/vector__6_"
+            android:src="@drawable/rain"
             android:layout_margin="5dp"/>
 
         <TextView
@@ -116,7 +117,7 @@
         <ImageView
             android:layout_width="21dp"
             android:layout_height="21dp"
-            android:src="@drawable/vector__6_"
+            android:src="@drawable/vector__5_"
             android:layout_margin="5dp"/>
 
         <TextView
@@ -144,7 +145,7 @@
         <ImageView
             android:layout_width="21dp"
             android:layout_height="21dp"
-            android:src="@drawable/vector__6_"
+            android:src="@drawable/vector__5_"
             android:layout_margin="5dp"/>
 
         <TextView
@@ -172,7 +173,7 @@
         <ImageView
             android:layout_width="21dp"
             android:layout_height="21dp"
-            android:src="@drawable/vector__6_"
+            android:src="@drawable/vector__5_"
             android:layout_margin="5dp"/>
 
         <TextView
@@ -200,7 +201,7 @@
         <ImageView
             android:layout_width="21dp"
             android:layout_height="21dp"
-            android:src="@drawable/vector__6_"
+            android:src="@drawable/vector__5_"
             android:layout_margin="5dp"/>
 
         <TextView
@@ -228,7 +229,7 @@
         <ImageView
             android:layout_width="21dp"
             android:layout_height="21dp"
-            android:src="@drawable/vector__6_"
+            android:src="@drawable/temp"
             android:layout_margin="5dp"/>
 
         <TextView
@@ -256,7 +257,7 @@
         <ImageView
             android:layout_width="21dp"
             android:layout_height="21dp"
-            android:src="@drawable/vector__6_"
+            android:src="@drawable/icon_uv_rays_glyph_style_free_vector"
             android:layout_margin="5dp"/>
 
         <TextView
@@ -284,7 +285,7 @@
         <ImageView
             android:layout_width="21dp"
             android:layout_height="21dp"
-            android:src="@drawable/vector__6_"
+            android:src="@drawable/wind"
             android:layout_margin="5dp"/>
 
         <TextView
@@ -312,7 +313,7 @@
         <ImageView
             android:layout_width="21dp"
             android:layout_height="21dp"
-            android:src="@drawable/vector__6_"
+            android:src="@drawable/wind"
             android:layout_margin="5dp"/>
 
         <TextView
