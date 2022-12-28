@@ -3,5 +3,4 @@ This is an Android application made by students of University of Information Tec
 The students who created this app
 1. Nguyen Le Trong Nhan
 2. Huynh Viet Vuong
-3. Pham Van Thang
-4. Tran Bao Ngoc
+3. Tran Bao Ngoc
