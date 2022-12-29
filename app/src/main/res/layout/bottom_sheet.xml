@@ -18,7 +18,7 @@
             android:layout_margin="5dp"/>
 
         <TextView
-            android:id="@+id/name_asset"
+            android:id="@+id/name_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Weather Asset"
@@ -26,6 +26,16 @@
             android:padding="5dp"
             android:fontFamily="@font/roboto_bold"
             android:textColor="@color/black"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/ngoc_backgr_white"
+            android:id="@+id/button_show_insight"
+            android:text="Insight"
+            android:textColor="@color/black"
+            android:fontFamily="@font/roboto_bold"
+
+            ></Button>
     </LinearLayout>
 
     <LinearLayout

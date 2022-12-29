@@ -2,14 +2,19 @@ package com.example.iotremote;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.iotremote.api.ApiService;
 import com.example.iotremote.api.AssetAPI;
 import com.example.iotremote.assetclass.AssetCs;
 import com.example.iotremote.assetdetail_database.DatabaseHandler;
+import com.example.iotremote.listview_asset.LvActivity;
 import com.example.iotremote.mapclass.Currency;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import org.osmdroid.api.IMapController;
@@ -26,7 +31,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
-    private DatabaseHandler db = new DatabaseHandler(this);
+    public static DatabaseHandler db;
     private MapView map;
     private ArrayList<OverlayItem> items = new ArrayList<>();
     int test=1;
@@ -36,11 +41,11 @@ public class MainActivity extends AppCompatActivity {
         Configuration.getInstance().load(
                 getApplicationContext(), PreferenceManager.getDefaultSharedPreferences(getApplicationContext())
         );
+        db = new DatabaseHandler(this);
         db.deleteTable();
         setContentView(R.layout.load_map);
         loadMap();
         callAssets();
-
     }
     @Override
     protected void onPause() {
@@ -145,36 +150,29 @@ public class MainActivity extends AppCompatActivity {
         uv_txt = bottomSheetDialog.findViewById(R.id.asset_uv);
         winddir = bottomSheetDialog.findViewById(R.id.asset_winddir);
         windsp = bottomSheetDialog.findViewById(R.id.asset_windsp);
-        assetName = bottomSheetDialog.findViewById(R.id.name_asset);
-        double temp_db = Double.parseDouble(db.getAsset(loca).getTemperature());
-        double hum_db = Double.parseDouble(db.getAsset(loca).getHumidity());
-        double rainfall_db = Double.parseDouble(db.getAsset(loca).getRainfall());
-        double sunal_db = Double.parseDouble(db.getAsset(loca).getSun_altitude());
-        double sunaz_db =Double.parseDouble(db.getAsset(loca).getSun_azimuth());
-        double sunir_db = Double.parseDouble(db.getAsset(loca).getSun_irradiance());
-        double sunze_db = Double.parseDouble(db.getAsset(loca).getSun_zenith());
-        double uv_db = Double.parseDouble(db.getAsset(loca).getUv_index());
-        double winddir_db =Double.parseDouble(db.getAsset(loca).getWind_direction());
-        double windsp_db = Double.parseDouble(db.getAsset(loca).getWind_speed());
-        String asName = db.getAsset(loca).getName() + "\nID: " + db.getAsset(loca).getId_db();
-        temp_txt.setText(""+check_null_data(temp_db));
-        hum_txt.setText(""+check_null_data(hum_db));
-        rainfall_txt.setText(""+check_null_data(rainfall_db));
-        sunal.setText(""+check_null_data(sunal_db));
-        sunaz.setText(""+check_null_data(sunaz_db));
-        sunir.setText(""+check_null_data(sunir_db));
-        sunze.setText(""+check_null_data(sunze_db));
-        uv_txt.setText(""+check_null_data(uv_db));
-        winddir.setText(""+check_null_data(winddir_db));
-        windsp.setText(""+check_null_data(windsp_db));
-        assetName.setText(asName);
+        assetName = bottomSheetDialog.findViewById(R.id.name_tv);
+        temp_txt.setText(db.getAsset(loca).getTemperature());
+        hum_txt.setText(db.getAsset(loca).getHumidity());
+        rainfall_txt.setText(db.getAsset(loca).getRainfall());
+        sunal.setText(db.getAsset(loca).getSun_altitude());
+        sunaz.setText(db.getAsset(loca).getSun_azimuth());
+        sunir.setText(db.getAsset(loca).getSun_irradiance());
+        sunze.setText(db.getAsset(loca).getSun_zenith());
+        uv_txt.setText(db.getAsset(loca).getUv_index());
+        winddir.setText(db.getAsset(loca).getWind_direction());
+        windsp.setText(db.getAsset(loca).getWind_speed());
+        assetName.setText(db.getAsset(loca).getName() + "\nID: " + db.getAsset(loca).getId_db());
+        Button btn_1 = bottomSheetDialog.findViewById(R.id.button_show_insight);
+        btn_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                StartInsightIntent();
+            }
+        });
         bottomSheetDialog.show();
     }
-    private String check_null_data(double a){
-        String f = ""+a;
-        if (a != -0.1)
-            return f;
-        else
-            return "No data";
+    private void StartInsightIntent(){
+        Intent intent = new Intent(MainActivity.this, LvActivity.class);
+        startActivity(intent);
     }
 }

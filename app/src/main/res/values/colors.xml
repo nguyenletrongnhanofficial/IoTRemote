@@ -18,5 +18,5 @@
     <color name="green">#008000</color>
     <color name="blue">#0000FF</color>
     <color name="black">#000000</color>
-
+    <color name="underline">#D8D6D6</color>
 </resources>
