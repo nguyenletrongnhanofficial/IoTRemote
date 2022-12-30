@@ -35,4 +35,6 @@
     <string name="asset_detail_5">Open Spaces</string>
     <string name="asset_detail_6">Daily tariff</string>
     <string name="asset_detail_7">Hourly tariff</string>
+    <string name="quen_mat_khau">Quên mật khẩu</string>
+    <string name="verifying">Verifying</string>
 </resources>

@@ -4,6 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+
     <ImageButton
         android:layout_width="20dp"
         android:layout_height="34dp"
@@ -88,6 +90,8 @@
         app:layout_constraintBottom_toTopOf="@id/btn_sign_up"
         android:fontFamily="@font/roboto"
         android:inputType="textPassword"></EditText>
+
+
     <Button
         android:id="@+id/btn_sign_up"
         android:layout_width="match_parent"

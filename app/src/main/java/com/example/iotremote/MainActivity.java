@@ -1,5 +1,6 @@
 package com.example.iotremote;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
 
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<OverlayItem> items = new ArrayList<>();
     int test=1;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Configuration.getInstance().load(
                 getApplicationContext(), PreferenceManager.getDefaultSharedPreferences(getApplicationContext())

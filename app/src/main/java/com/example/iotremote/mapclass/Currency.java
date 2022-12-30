@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 public class Currency {
     @SerializedName("options")
     private Options options;
-//    private Options options;
+    //    private Options options;
 //    private String attribution;
 //    private String format;
 //    private String type;

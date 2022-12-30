@@ -18,66 +18,73 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
-    private EditText et_password,et_email;
-    private Button btn_sign_in,btn_sign_up_now;
-    private FirebaseAuth mAuth;
+    DatabaseReference dtbasereference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://iotz-ce511-default-rtdb.firebaseio.com/");
     @Override
-    protected  void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+    protected  void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-        mAuth = FirebaseAuth.getInstance();
-        et_email = findViewById(R.id.et_email);
-        et_password = findViewById(R.id.et_password);
-        btn_sign_in = findViewById(R.id.btn_sign_in);
-        btn_sign_up_now = findViewById(R.id.btn_sign_up_now);
+        final EditText username = findViewById(R.id.et_email);
+        final EditText password = findViewById(R.id.et_password);
+        final Button btn_sign_in = findViewById(R.id.btn_sign_in);
+        final Button btn_sign_up_now = findViewById(R.id.btn_sign_up_now);
+        final Button btn_forget_pass = findViewById(R.id.btn_forget_pass);
         btn_sign_in.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                login();
+                final String usernametxt = username.getText().toString();
+                final String passwordtxt = password.getText().toString();
+                if (usernametxt.isEmpty() || passwordtxt.isEmpty()) {
+                    Toast.makeText(LoginActivity.this, "Username or Password is empty!", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    dtbasereference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                if(snapshot.hasChild(usernametxt)){
+                                    final String getPassword = snapshot.child(usernametxt).child("password").getValue(String.class);
+                                    if (getPassword.equals(passwordtxt)){
+                                        Toast.makeText(LoginActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
+                                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                    }
+                                    else {
+                                        Toast.makeText(LoginActivity.this, "Wrong Password", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                                else {
+                                    Toast.makeText(LoginActivity.this, "Wrong Username", Toast.LENGTH_SHORT).show();
+                                }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                }
 
             }
         });
         btn_sign_up_now.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                register();
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
             }
         });
-    }
-
-    private void register() {
-        Intent i = new Intent(LoginActivity.this,RegisterActivity.class);
-        startActivity(i);
-    }
-
-    private void login() {
-        String username,pass;
-        username = et_email.getText().toString();
-        pass = et_password.getText().toString();
-        if(TextUtils.isEmpty(username)){
-            Toast.makeText(this, "Email is required!",Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if(TextUtils.isEmpty(pass)){
-            Toast.makeText(this, "Password cannot be Empty !",Toast.LENGTH_SHORT).show();
-            return;
-        }
-        mAuth.signInWithEmailAndPassword(username, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        btn_forget_pass.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()) {
-                    Toast.makeText(getApplicationContext(), "Login Succesful", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(intent);
-                }
-                else{
-                    Toast.makeText(getApplicationContext(), "Login Failed", Toast.LENGTH_SHORT).show();
-
-                }
+            public void onClick(View view) {
+                startActivity(new Intent(LoginActivity.this, ForgetPassActivity.class));
 
             }
         });
+
     }
-}
+    }
+
