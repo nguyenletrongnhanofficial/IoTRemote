@@ -17,6 +17,7 @@ import com.example.iotremote.assetclass.AssetCs;
 import com.example.iotremote.assetdetail_database.DatabaseHandler;
 import com.example.iotremote.chart_database.ChartDBHandler;
 import com.example.iotremote.chart_database.chart.LineChartActivity;
+import com.example.iotremote.listview_asset.LvActivity;
 import com.example.iotremote.mapclass.Currency;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import org.osmdroid.api.IMapController;
@@ -189,10 +190,18 @@ public class MainActivity extends AppCompatActivity {
                 StartInsightIntent();
             }
         });
+        Button btn_2 = bottomSheetDialog.findViewById(R.id.button_show_statistics);
+        btn_2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, LineChartActivity.class);
+                startActivity(intent);
+            }
+        });
         bottomSheetDialog.show();
     }
     private void StartInsightIntent(){
-        Intent intent = new Intent(MainActivity.this, LineChartActivity.class);
+        Intent intent = new Intent(MainActivity.this, LvActivity.class);
         startActivity(intent);
     }
 }

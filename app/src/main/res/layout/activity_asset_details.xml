@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:fillViewport="true"
-    android:padding="16dp">
+    android:padding="6dp">
 <RelativeLayout
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -11,13 +11,23 @@
     android:layout_height="match_parent"
     tools:context=".listview_asset.AssetActivity">
 
+    <TextView
+        android:id="@+id/tv_stastics"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Asset Details"
+        android:textSize="50sp"
+        android:fontFamily="@font/roboto_bold"
+        android:layout_marginTop="10dp"
+        />
     <ImageView
         android:id="@+id/profile_image"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_centerHorizontal="true"
         android:src="@drawable/attribution_1"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="80dp"/>
 
     <TextView
         android:id="@+id/scode_profile"

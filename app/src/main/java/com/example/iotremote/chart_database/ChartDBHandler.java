@@ -98,7 +98,7 @@ public class ChartDBHandler extends SQLiteOpenHelper {
         String z = "";
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
         Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_CONTACTS, null);
-        cursor.moveToPosition(cursor.getCount() - (range)*3);
+        cursor.moveToPosition(cursor.getCount() - ((range)*3+1));
         while(cursor.moveToNext())
         {
             z = cursor.getString(cursor.getColumnIndex(KEY_NAME));

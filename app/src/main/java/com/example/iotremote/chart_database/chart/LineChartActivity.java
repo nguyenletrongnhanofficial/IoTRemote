@@ -56,7 +56,7 @@ public class LineChartActivity extends ChartBase implements
         //View inflatedView = getLayoutInflater().inflate(R.layout.activity_linechart, null);
         seekBar = findViewById(R.id.seekBar);
         seekBar.setOnSeekBarChangeListener(this);
-
+        seekBar.setProgress(5);
 
         spnAsset = findViewById(R.id.spnThumbnail2);
         spnValue = findViewById(R.id.spnThumbnail);
@@ -265,7 +265,7 @@ public class LineChartActivity extends ChartBase implements
             if (values.get(i) > values.get(i+1))
                 max = values.get(i);
         }
-        int max_int = (int) max;
+        int max_int = (int) max+1;
         return max_int;
     }
     @Override
