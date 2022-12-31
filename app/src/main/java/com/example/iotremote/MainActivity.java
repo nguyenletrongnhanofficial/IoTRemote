@@ -14,6 +14,8 @@ import com.example.iotremote.api.ApiService;
 import com.example.iotremote.api.AssetAPI;
 import com.example.iotremote.assetclass.AssetCs;
 import com.example.iotremote.assetdetail_database.DatabaseHandler;
+import com.example.iotremote.chart_database.ChartDBHandler;
+import com.example.iotremote.chart_database.chart.LineChartActivity;
 import com.example.iotremote.listview_asset.LvActivity;
 import com.example.iotremote.mapclass.Currency;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -26,15 +28,19 @@ import org.osmdroid.views.overlay.ItemizedIconOverlay;
 import org.osmdroid.views.overlay.ItemizedOverlayWithFocus;
 import org.osmdroid.views.overlay.OverlayItem;
 import java.util.ArrayList;
+import java.util.Calendar;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     public static DatabaseHandler db;
+    public static ChartDBHandler db_chart;
     private MapView map;
     private ArrayList<OverlayItem> items = new ArrayList<>();
     int test=1;
+    int saveDataTrigger =0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +48,17 @@ public class MainActivity extends AppCompatActivity {
                 getApplicationContext(), PreferenceManager.getDefaultSharedPreferences(getApplicationContext())
         );
         db = new DatabaseHandler(this);
+        db_chart = new ChartDBHandler(this);
+        Calendar c = Calendar.getInstance();
+        int day = c.get(Calendar.DAY_OF_MONTH);
+        int month = c.get(Calendar.MONTH)+1;
+        int year = c.get(Calendar.YEAR);
+        //Toast.makeText(MainActivity.this, ""+db_chart.checkDate(day,month,year), Toast.LENGTH_LONG).show();
+        if (db_chart.checkDate(day,month,year) == 0){
+            Toast.makeText(MainActivity.this, "Loaded data to database", Toast.LENGTH_LONG).show();
+            saveDataTrigger =1;
+        }
+        else Toast.makeText(MainActivity.this, "All data update", Toast.LENGTH_LONG).show();
         db.deleteTable();
         setContentView(R.layout.load_map);
         loadMap();
@@ -64,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<AssetCs> call, Response<AssetCs> response) {
                 AssetCs asset = response.body();
                 db.addAsset(asset);
+                if (saveDataTrigger == 1) db_chart.addAssetDailyData(asset);
                 loadAssetToMap(asset);
             }
             @Override
@@ -75,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<AssetCs> call, Response<AssetCs> response) {
                 AssetCs asset = response.body();
                 db.addAsset(asset);
+                if (saveDataTrigger == 1) db_chart.addAssetDailyData(asset);
                 loadAssetToMap(asset);
             }
             @Override
@@ -86,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<AssetCs> call, Response<AssetCs> response) {
                 AssetCs asset = response.body();
                 db.addAsset(asset);
+                if (saveDataTrigger == 1) db_chart.addAssetDailyData(asset);
                 loadAssetToMap(asset);
             }
             @Override
@@ -161,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
         uv_txt.setText(db.getAsset(loca).getUv_index());
         winddir.setText(db.getAsset(loca).getWind_direction());
         windsp.setText(db.getAsset(loca).getWind_speed());
-        assetName.setText(db.getAsset(loca).getName() + "\nID: " + db.getAsset(loca).getId_db());
+        assetName.setText(db.getAsset(loca).getName() + "\nID: " + db.getAsset(loca).getId_asset());
         Button btn_1 = bottomSheetDialog.findViewById(R.id.button_show_insight);
         btn_1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -172,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
         bottomSheetDialog.show();
     }
     private void StartInsightIntent(){
-        Intent intent = new Intent(MainActivity.this, LvActivity.class);
+        Intent intent = new Intent(MainActivity.this, LineChartActivity.class);
         startActivity(intent);
     }
 }

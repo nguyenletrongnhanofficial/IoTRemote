@@ -10,9 +10,11 @@ import android.util.Log;
 
 import com.example.iotremote.assetclass.AssetCs;
 
+import java.util.Calendar;
+
 public class DatabaseHandler extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "assetManager";
+    private static final String DATABASE_NAME = "assetManager.db";
     private static final String TABLE_CONTACTS = "assets";
     private static final String KEY_ID = "id";
     private static final String KEY_NAME = "name";
@@ -27,6 +29,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_DATA_9 = "uv_index";
     private static final String KEY_DATA_10 = "wind_direction";
     private static final String KEY_DATA_11 = "wind_speed";
+    private static final String KEY_DATA_12 = "date";
 
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -42,7 +45,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + KEY_DATA_5 + " TEXT," + KEY_DATA_6 + " TEXT,"
                 + KEY_DATA_7 + " TEXT," + KEY_DATA_8 + " TEXT,"
                 + KEY_DATA_9 + " TEXT," + KEY_DATA_10 + " TEXT,"
-                + KEY_DATA_11 + " TEXT" + ")";
+                + KEY_DATA_11 + " TEXT," + KEY_DATA_12 + " TEXT" + ")";
         db.execSQL(createTable);
         Log.d("Data", createTable);
     }
@@ -54,14 +57,19 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTACTS);
         // Create tables again
         onCreate(db);
+
     }
 
     // code to add the new contact
     public void addAsset(AssetCs asset) {
+        Calendar c = Calendar.getInstance();
+        int day = c.get(Calendar.DAY_OF_MONTH);
+        int month = c.get(Calendar.MONTH);
+        int year = c.get(Calendar.YEAR);
+        String date = day + "/" + (month+1) + "/" + year;
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
-        //values.put(KEY_ID, asset.getdb_id());
-        values.put(KEY_NAME, asset.getName()); // Contact Name
+        values.put(KEY_NAME, asset.getName());
         values.put(KEY_DATA_1, asset.getId());
         values.put(KEY_DATA_2, ""+check_null_data(asset.getAttributes().getHumidity().getValue().doubleValue()));
         values.put(KEY_DATA_3, ""+check_null_data(asset.getAttributes().getRainfall().getValue().doubleValue()));
@@ -73,6 +81,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_DATA_9, ""+check_null_data(asset.getAttributes().getUVIndex().getValue().doubleValue()));
         values.put(KEY_DATA_10, ""+check_null_data(asset.getAttributes().getWindDirection().getValue().doubleValue()));
         values.put(KEY_DATA_11, ""+check_null_data(asset.getAttributes().getWindSpeed().getValue().doubleValue()));
+        values.put(KEY_DATA_12, date);
         db.insert(TABLE_CONTACTS, null, values);
     }
     private String check_null_data(double a){
@@ -104,7 +113,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 String UV_index = cursor.getString(cursor.getColumnIndex(KEY_DATA_9));
                 String Wind_direction = cursor.getString(cursor.getColumnIndex(KEY_DATA_10));
                 String Wind_speed = cursor.getString(cursor.getColumnIndex(KEY_DATA_11));
-                asd = new AssetDetail(name, id_,Humidity,Rainfall,Sun_altitude,Sun_azimuth,Sun_irradiance,Sun_zenith,Temperature,UV_index,Wind_direction,Wind_speed);
+                String date = cursor.getString(cursor.getColumnIndex(KEY_DATA_12));
+                asd = new AssetDetail(name, id_,Humidity,Rainfall,Sun_altitude,Sun_azimuth,Sun_irradiance,Sun_zenith,Temperature,UV_index,Wind_direction,Wind_speed,date);
                 return asd;
             }
         }
