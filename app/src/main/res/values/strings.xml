@@ -1,4 +1,7 @@
 <resources>
+    <string name="facebook_app_id">1359903231412339</string>
+    <string name="fb_login_protocol_scheme">fb1359903231412339</string>
+    <string name="facebook_client_token">04fa31af1e8b16ee5e5e69705cbbc163</string>
     <string name="app_name">IoTRemote</string>
     <string name="didn_t_receive_the_otp">Didn\'t Receive The OTP?</string>
     <string name="kh_ng_nh_n_c_m">Không nhận được mã?</string>
