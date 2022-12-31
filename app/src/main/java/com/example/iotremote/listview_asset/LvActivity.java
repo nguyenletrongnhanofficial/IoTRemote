@@ -25,7 +25,7 @@ public class LvActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         int[] imageId = {R.drawable.vector__5_, R.drawable.vector__5_, R.drawable.vector__5_};
         String[] name = {""+db_.getAsset(1).getName() ,""+db_.getAsset(2).getName(),""+db_.getAsset(3).getName()};
-        String[] id_asset = {""+db_.getAsset(1).getId_db(),""+db_.getAsset(2).getId_db(),""+db_.getAsset(3).getId_db()};
+        String[] id_asset = {""+db_.getAsset(1).getId_asset(),""+db_.getAsset(2).getId_asset(),""+db_.getAsset(3).getId_asset()};
         String[] status = {"Online","Online","Online"};
 //        String[] phoneNo = {"7656610000","9999043232","7834354323"};
 //        String[] country = {"United States","Russia","India"};

@@ -28,24 +28,20 @@ public class AssetActivity extends AppCompatActivity {
             int imageid = intent.getIntExtra("imageid", R.drawable.img_1);
             binding.profileImage.setImageResource(imageid);
             binding.nameTv.setText((db_.getAsset(id_database).getName()));
-            binding.idTv.setText((db_.getAsset(id_database).getId_db()));
-            binding.HumTv.setText(check_null(db_.getAsset(id_database).getHumidity()));
-            binding.rainTv.setText(check_null(db_.getAsset(id_database).getRainfall()));
-            binding.sun1Tv.setText(check_null(db_.getAsset(id_database).getSun_altitude()));
-            binding.sun2Tv.setText(check_null(db_.getAsset(id_database).getSun_azimuth()));
-            binding.sun3Tv.setText(check_null(db_.getAsset(id_database).getSun_irradiance()));
-            binding.sun4Tv.setText(check_null(db_.getAsset(id_database).getSun_zenith()));
-            binding.tempTv.setText(check_null(db_.getAsset(id_database).getTemperature()));
-            binding.uvTv.setText(check_null(db_.getAsset(id_database).getUv_index()));
-            binding.wind1Tv.setText(check_null(db_.getAsset(id_database).getWind_direction()));
-            binding.wind2Tv.setText(check_null(db_.getAsset(id_database).getWind_speed()));
-            Log.d ("tag", db_.getAsset(id_database).getRainfall());
+            binding.idTv.setText((db_.getAsset(id_database).getId_asset()));
+            binding.HumTv.setText((db_.getAsset(id_database).getHumidity()));
+            binding.rainTv.setText((db_.getAsset(id_database).getRainfall()));
+            binding.sun1Tv.setText((db_.getAsset(id_database).getSun_altitude()));
+            binding.sun2Tv.setText((db_.getAsset(id_database).getSun_azimuth()));
+            binding.sun3Tv.setText((db_.getAsset(id_database).getSun_irradiance()));
+            binding.sun4Tv.setText((db_.getAsset(id_database).getSun_zenith()));
+            binding.tempTv.setText((db_.getAsset(id_database).getTemperature()));
+            binding.uvTv.setText((db_.getAsset(id_database).getUv_index()));
+            binding.wind1Tv.setText((db_.getAsset(id_database).getWind_direction()));
+            binding.wind2Tv.setText((db_.getAsset(id_database).getWind_speed()));
+            binding.date.setText((db_.getAsset(id_database).getDate()));
+            //Log.d ("tag", db_.getAsset(id_database).getRainfall());
         }
 
-    }
-    private String check_null(String a){
-        if (a == "-0.1")
-            return "No data";
-        return a;
     }
 }

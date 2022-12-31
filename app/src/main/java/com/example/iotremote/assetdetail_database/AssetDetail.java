@@ -3,7 +3,7 @@ package com.example.iotremote.assetdetail_database;
 public class AssetDetail {
     int id_;
     String name;
-    String id_db;
+    String id_asset;
     String humidity;
     String rainfall;
     String sun_altitude;
@@ -14,20 +14,22 @@ public class AssetDetail {
     String uv_index;
     String wind_direction;
     String wind_speed;
+    String date;
 
-    public AssetDetail(String string, String string1, String string2, String string3, String string4, String string5, String string6, String string7, String string8, String string9, String string10, String string11) {
-        this.name = string;
-        this.id_db = string1;
-        this.humidity= string2;
-        this.rainfall = string3;
-        this.sun_altitude = string4;
-        this.sun_azimuth= string5;
-        this.sun_irradiance = string6;
-        this.sun_zenith = string7;
-        this.temperature = string8;
-        this.uv_index= string9;
-        this.wind_direction = string10;
-        this.wind_speed = string11;
+    public AssetDetail(String name, String id_asset, String humidity, String railfall, String sunal, String sunaz, String sunir, String sunze, String temp, String uv, String winddir, String windsp, String date) {
+        this.name = name;
+        this.id_asset = id_asset;
+        this.humidity= humidity;
+        this.rainfall = railfall;
+        this.sun_altitude = sunal;
+        this.sun_azimuth= sunaz;
+        this.sun_irradiance = sunir;
+        this.sun_zenith = sunze;
+        this.temperature = temp;
+        this.uv_index= uv;
+        this.wind_direction = winddir;
+        this.wind_speed = windsp;
+        this.date = date;
     }
     public int getId_() {
         return id_;
@@ -37,8 +39,8 @@ public class AssetDetail {
         return name;
     }
 
-    public String getId_db() {
-        return id_db;
+    public String getId_asset() {
+        return id_asset;
     }
 
     public String getHumidity() {
@@ -89,8 +91,8 @@ public class AssetDetail {
         this.name = name;
     }
 
-    public void setId_db(String id_db) {
-        this.id_db = id_db;
+    public void setId_asset(String id_asset) {
+        this.id_asset = id_asset;
     }
 
     public void setHumidity(String humidity) {
@@ -132,4 +134,13 @@ public class AssetDetail {
     public void setWind_speed(String wind_speed) {
         this.wind_speed = wind_speed;
     }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
 }
