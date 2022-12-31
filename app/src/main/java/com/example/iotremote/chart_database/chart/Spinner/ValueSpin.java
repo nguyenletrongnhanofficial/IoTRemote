@@ -4,9 +4,9 @@ import com.example.iotremote.R;
 
 public enum ValueSpin {
     ThumbnailValue1("Humidity (%)", R.drawable.vector__6_),
-    ThumbnailValue2("Temperature (°C)", R.drawable.temp),
-    ThumbnailValue3("Wind direction", R.drawable.wind),
-    ThumbnailValue4("Wind speed (km/h)", R.drawable.wind);
+    ThumbnailValue2("Temperature (°C)", R.drawable.ic_baseline_severe_cold_24),
+    ThumbnailValue3("Wind direction", R.drawable.ic_baseline_sailing_24),
+    ThumbnailValue4("Wind speed (km/h)", R.drawable.ic_baseline_speed_24);
     private String name;
     private int img;
 
