@@ -1,33 +1,41 @@
 {
   "project_info": {
-    "project_number": "642783011467",
-    "project_id": "mobilelogin-480ed",
-    "storage_bucket": "mobilelogin-480ed.appspot.com"
+    "project_number": "699958208005",
+    "project_id": "iotz-ce511",
+    "storage_bucket": "iotz-ce511.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:642783011467:android:1c344c2c8605041c686a8e",
+        "mobilesdk_app_id": "1:699958208005:android:b6f7616cd8176285c41e6c",
         "android_client_info": {
           "package_name": "com.example.iotremote"
         }
       },
       "oauth_client": [
         {
-          "client_id": "642783011467-03f8bbnr21o5rjcr23rbd72so51libae.apps.googleusercontent.com",
+          "client_id": "699958208005-vkcrb2gooer1240dqkkleam14gmt8kf0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.iotremote",
+            "certificate_hash": "2bfe1a9ebf47ed2d32f5b5d455f8e1c07789ea51"
+          }
+        },
+        {
+          "client_id": "699958208005-rgjvs04f5n6q5ipv8vm8ptme93b1dn74.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBXNugIew-LbjB1dm7RbT18E5r4rli3sj4"
+          "current_key": "AIzaSyB3xsbEODU7b38mL_CohA9J1US67YWkNUs"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "642783011467-03f8bbnr21o5rjcr23rbd72so51libae.apps.googleusercontent.com",
+              "client_id": "699958208005-rgjvs04f5n6q5ipv8vm8ptme93b1dn74.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
