@@ -1,5 +1,6 @@
 package com.example.iotremote.chart_database.chart;
 
+import com.example.iotremote.MainActivity;
 import com.example.iotremote.R;
 
 import android.graphics.Color;
@@ -9,9 +10,12 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.SeekBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.iotremote.chart_database.ChartDBHandler;
 import com.example.iotremote.chart_database.chart.Spinner.AssetSpin;
 import com.example.iotremote.chart_database.chart.Spinner.AssetSpinAdapter;
 import com.example.iotremote.chart_database.chart.Spinner.ValueSpin;
@@ -30,13 +34,18 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
-public class LineChartActivity extends ChartBase implements OnChartValueSelectedListener {
+public class LineChartActivity extends ChartBase implements
+        OnChartValueSelectedListener, SeekBar.OnSeekBarChangeListener {
     Spinner spnAsset, spnValue;
     String choosingAsset, choosingValue;
     private LineChart chart;
+    ChartDBHandler db_chart = MainActivity.db_chart;
     int img;
+    private SeekBar seekBar;
+    private int barvalue=5;
 //    private TextView tvX, tvY;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +54,10 @@ public class LineChartActivity extends ChartBase implements OnChartValueSelected
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_linechart);
         //View inflatedView = getLayoutInflater().inflate(R.layout.activity_linechart, null);
+        seekBar = findViewById(R.id.seekBar);
+        seekBar.setOnSeekBarChangeListener(this);
+
+
         spnAsset = findViewById(R.id.spnThumbnail2);
         spnValue = findViewById(R.id.spnThumbnail);
         AssetSpinAdapter AssetAdapter = new AssetSpinAdapter(this,R.layout.item_thumbnail, getAssetListCategory());
@@ -54,10 +67,9 @@ public class LineChartActivity extends ChartBase implements OnChartValueSelected
         spnAsset.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(LineChartActivity.this,AssetAdapter.getItem(i).getName(),Toast.LENGTH_SHORT).show();
+                //Toast.makeText(LineChartActivity.this,AssetAdapter.getItem(i).getName(),Toast.LENGTH_SHORT).show();
                 img = AssetAdapter.getItem(i).getImg();
                 choosingAsset = AssetAdapter.getItem(i).getName();
-                setData(i+5, i+5);
                 chart.invalidate();
             }
 
@@ -69,10 +81,9 @@ public class LineChartActivity extends ChartBase implements OnChartValueSelected
         spnValue.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(LineChartActivity.this,ValueAdapter.getItem(i).getName(),Toast.LENGTH_SHORT).show();
+                //Toast.makeText(LineChartActivity.this,ValueAdapter.getItem(i).getName(),Toast.LENGTH_SHORT).show();
                 img = ValueAdapter.getItem(i).getImg();
                 choosingValue = ValueAdapter.getItem(i).getName();
-                //setData(i+5, i+5);
             }
 
             @Override
@@ -84,7 +95,10 @@ public class LineChartActivity extends ChartBase implements OnChartValueSelected
         btnA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setData(20, 20);
+                updatedate(barvalue);
+                Toast.makeText(LineChartActivity.this,"" +choosingAsset+ choosingValue,Toast.LENGTH_SHORT).show();
+                List <Float> a = db_chart.getValueData(choosingAsset,choosingValue,barvalue);
+                setData(barvalue, barvalue, a);
                 chart.invalidate();
             }
         });
@@ -133,7 +147,7 @@ public class LineChartActivity extends ChartBase implements OnChartValueSelected
 
         XAxis xAxis = chart.getXAxis();
         xAxis.setTypeface(tfLight);
-        xAxis.setTextSize(11f);
+        xAxis.setTextSize(0f);
         xAxis.setTextColor(Color.BLACK);
         xAxis.setDrawGridLines(false);
         xAxis.setDrawAxisLine(false);
@@ -141,7 +155,7 @@ public class LineChartActivity extends ChartBase implements OnChartValueSelected
         YAxis leftAxis = chart.getAxisLeft();
         leftAxis.setTypeface(tfLight);
         leftAxis.setTextColor(ColorTemplate.getHoloBlue());
-        leftAxis.setAxisMaximum(200f);
+        leftAxis.setAxisMaximum(100f);
         leftAxis.setAxisMinimum(0f);
         leftAxis.setDrawGridLines(true);
         leftAxis.setGranularityEnabled(true);
@@ -149,13 +163,12 @@ public class LineChartActivity extends ChartBase implements OnChartValueSelected
         YAxis rightAxis = chart.getAxisRight();
         rightAxis.setTypeface(tfLight);
         rightAxis.setTextColor(Color.RED);
-        rightAxis.setAxisMaximum(900);
-        rightAxis.setAxisMinimum(-200);
+        rightAxis.setAxisMaximum(100f);
+        rightAxis.setAxisMinimum(0f);
         rightAxis.setDrawGridLines(false);
         rightAxis.setDrawZeroLine(false);
         rightAxis.setGranularityEnabled(false);
 
-        //setData(10,10);
     }
     private  List<AssetSpin> getAssetListCategory(){
         List<AssetSpin> list = new ArrayList<>();
@@ -172,44 +185,41 @@ public class LineChartActivity extends ChartBase implements OnChartValueSelected
         list.add(ValueSpin.ThumbnailValue4);
         return list;
     }
-    private void setData(int count, float range) {
+    private void setData(int count, float range, List<Float> values) {
+        int Max = getMaxValue(values)*3;
+        YAxis leftAxis = chart.getAxisLeft();
+        leftAxis.setTypeface(tfLight);
+        leftAxis.setTextColor(ColorTemplate.getHoloBlue());
+        leftAxis.setAxisMaximum(Max);
+        leftAxis.setAxisMinimum(0f);
+        leftAxis.setDrawGridLines(true);
+        leftAxis.setGranularityEnabled(true);
+
+        YAxis rightAxis = chart.getAxisRight();
+        rightAxis.setTypeface(tfLight);
+        rightAxis.setTextColor(Color.RED);
+        rightAxis.setAxisMaximum(Max);
+        rightAxis.setAxisMinimum(0f);
+        rightAxis.setDrawGridLines(false);
+        rightAxis.setDrawZeroLine(false);
+        rightAxis.setGranularityEnabled(false);
 
         ArrayList<Entry> values1 = new ArrayList<>();
 
         for (int i = 0; i < count; i++) {
-            float val = (float) (Math.random() * (range / 2f)) + 50;
+            Float val = values.get(i);
             values1.add(new Entry(i, val));
         }
-
-        ArrayList<Entry> values2 = new ArrayList<>();
-
-        for (int i = 0; i < count; i++) {
-            float val = (float) (Math.random() * range) + 450;
-            values2.add(new Entry(i, val));
-        }
-
-        ArrayList<Entry> values3 = new ArrayList<>();
-
-        for (int i = 0; i < count; i++) {
-            float val = (float) (Math.random() * range) + 500;
-            values3.add(new Entry(i, val));
-        }
-
-        LineDataSet set1, set2, set3;
-
+        LineDataSet set1;
         if (chart.getData() != null &&
                 chart.getData().getDataSetCount() > 0) {
             set1 = (LineDataSet) chart.getData().getDataSetByIndex(0);
-            set2 = (LineDataSet) chart.getData().getDataSetByIndex(1);
-            set3 = (LineDataSet) chart.getData().getDataSetByIndex(2);
             set1.setValues(values1);
-            set2.setValues(values2);
-            set3.setValues(values3);
             chart.getData().notifyDataChanged();
             chart.notifyDataSetChanged();
         } else {
             // create a dataset and give it a type
-            set1 = new LineDataSet(values1, "DataSet 1");
+            set1 = new LineDataSet(values1, choosingValue);
 
             set1.setAxisDependency(AxisDependency.LEFT);
             set1.setColor(ColorTemplate.getHoloBlue());
@@ -220,37 +230,9 @@ public class LineChartActivity extends ChartBase implements OnChartValueSelected
             set1.setFillColor(ColorTemplate.getHoloBlue());
             set1.setHighLightColor(Color.rgb(244, 117, 117));
             set1.setDrawCircleHole(false);
-            //set1.setFillFormatter(new MyFillFormatter(0f));
-            //set1.setDrawHorizontalHighlightIndicator(false);
-            //set1.setVisible(false);
-            //set1.setCircleHoleColor(Color.WHITE);
-
-            // create a dataset and give it a type
-            set2 = new LineDataSet(values2, "DataSet 2");
-            set2.setAxisDependency(AxisDependency.RIGHT);
-            set2.setColor(Color.RED);
-            set2.setCircleColor(Color.BLUE);
-            set2.setLineWidth(2f);
-            set2.setCircleRadius(3f);
-            set2.setFillAlpha(65);
-            set2.setFillColor(Color.RED);
-            set2.setDrawCircleHole(false);
-            set2.setHighLightColor(Color.rgb(244, 117, 117));
-            //set2.setFillFormatter(new MyFillFormatter(900f));
-
-            set3 = new LineDataSet(values3, "DataSet 3");
-            set3.setAxisDependency(AxisDependency.RIGHT);
-            set3.setColor(Color.YELLOW);
-            set3.setCircleColor(Color.BLUE);
-            set3.setLineWidth(2f);
-            set3.setCircleRadius(3f);
-            set3.setFillAlpha(65);
-            set3.setFillColor(ColorTemplate.colorWithAlpha(Color.YELLOW, 200));
-            set3.setDrawCircleHole(false);
-            set3.setHighLightColor(Color.rgb(244, 117, 117));
 
             // create a data object with the data sets
-            LineData data = new LineData(set1, set2, set3);
+            LineData data = new LineData(set1);
             data.setValueTextColor(Color.BLUE);
             data.setValueTextSize(9f);
 
@@ -258,11 +240,44 @@ public class LineChartActivity extends ChartBase implements OnChartValueSelected
             chart.setData(data);
         }
     }
+    private void updatedate(int day_count){
+        Calendar c = Calendar.getInstance();
+        int day = c.get(Calendar.DAY_OF_MONTH);
+        int month = c.get(Calendar.MONTH)+1;
+        int year = c.get(Calendar.YEAR);
+        String date_start;
+        if (day > day_count) {
+            date_start = (day-day_count) + "/" + month + "/"+year;
+        }
+        else if (day < day_count && month !=1){
+            date_start = (day+(30-day_count)) + "/" + (month-1) + "/"+year;
+        }
+        else date_start = (day+(30-day_count)) + "/" + 12 + "/"+ (year-1);
+        TextView start_ = findViewById(R.id.date_start_line_chart);
+        TextView end_ = findViewById(R.id.date_end_line_chart);
+        start_.setText(date_start);
+        end_.setText(""+day+ "/"+month+ "/"+year);
+
+    }
+    private int getMaxValue(List <Float> values){
+        float max = 0;
+        for (int i=0; i< values.size()-1; i++){
+            if (values.get(i) > values.get(i+1))
+                max = values.get(i);
+        }
+        int max_int = (int) max;
+        return max_int;
+    }
+    @Override
+    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        barvalue = progress;
+    }
 
     @Override
     protected void saveToGallery() {
         saveToGallery(chart, "LineChartActivity");
     }
+
 
     @Override
     public void onValueSelected(Entry e, Highlight h) {
@@ -276,4 +291,9 @@ public class LineChartActivity extends ChartBase implements OnChartValueSelected
     public void onNothingSelected() {
         Log.i("Nothing selected", "Nothing selected.");
     }
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {}
+
+    @Override
+    public void onStopTrackingTouch(SeekBar seekBar) {}
 }
