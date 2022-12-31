@@ -17,7 +17,6 @@ import com.example.iotremote.assetclass.AssetCs;
 import com.example.iotremote.assetdetail_database.DatabaseHandler;
 import com.example.iotremote.chart_database.ChartDBHandler;
 import com.example.iotremote.chart_database.chart.LineChartActivity;
-import com.example.iotremote.listview_asset.LvActivity;
 import com.example.iotremote.mapclass.Currency;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import org.osmdroid.api.IMapController;
@@ -40,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     public static ChartDBHandler db_chart;
     private MapView map;
     private ArrayList<OverlayItem> items = new ArrayList<>();
-    int test=1;
+    int db_num =1;
     int saveDataTrigger =0;
     @Override
     protected void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
@@ -50,11 +49,11 @@ public class MainActivity extends AppCompatActivity {
         );
         db = new DatabaseHandler(this);
         db_chart = new ChartDBHandler(this);
+        //db_chart.deleteTable();
         Calendar c = Calendar.getInstance();
         int day = c.get(Calendar.DAY_OF_MONTH);
         int month = c.get(Calendar.MONTH)+1;
         int year = c.get(Calendar.YEAR);
-        //Toast.makeText(MainActivity.this, ""+db_chart.checkDate(day,month,year), Toast.LENGTH_LONG).show();
         if (db_chart.checkDate(day,month,year) == 0){
             Toast.makeText(MainActivity.this, "Loaded data to database", Toast.LENGTH_LONG).show();
             saveDataTrigger =1;
@@ -141,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<Float> assetInfo = assetRtn.getAttributes().getLocation().getValue().getCoordinates();
         String assetName = assetRtn.getName();
         String assetID = assetRtn.getId();
-        items.add(new OverlayItem(""+assetName, "Database Location: "+test, new GeoPoint(assetInfo.get(1), assetInfo.get(0)))); test++;
+        items.add(new OverlayItem(""+assetName, "Database Location: "+ db_num, new GeoPoint(assetInfo.get(1), assetInfo.get(0)))); db_num++;
         ItemizedOverlayWithFocus<OverlayItem> mOverlay = new ItemizedOverlayWithFocus<OverlayItem>(getApplicationContext(), items, new ItemizedIconOverlay.OnItemGestureListener<OverlayItem>() {
             @Override
             public boolean onItemSingleTapUp(int index, OverlayItem item) {
