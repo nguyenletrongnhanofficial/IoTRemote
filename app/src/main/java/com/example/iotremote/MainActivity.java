@@ -1,5 +1,6 @@
 package com.example.iotremote;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
@@ -7,6 +8,7 @@ import androidx.preference.PreferenceManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -19,6 +21,7 @@ import com.example.iotremote.chart_database.ChartDBHandler;
 import com.example.iotremote.chart_database.chart.LineChartActivity;
 import com.example.iotremote.listview_asset.LvActivity;
 import com.example.iotremote.mapclass.Currency;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
@@ -64,6 +67,33 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.load_map);
         loadMap();
         callAssets();
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.actionhome:
+                        Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        return true;
+                    case R.id.buttonAList:
+                        Intent intent2 = new Intent(MainActivity.this, LvActivity.class);
+                        startActivity(intent2);
+                        return true;
+                    case R.id.buttonStatistics:
+                        Intent intent3 = new Intent(MainActivity.this, LineChartActivity.class);
+                        startActivity(intent3);
+                        return true;
+                    case R.id.buttonpersonal:
+                        Intent intent4 = new Intent(MainActivity.this, LoginActivity.class);
+                        startActivity(intent4);
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+        });
     }
     @Override
     protected void onPause() {

@@ -2,17 +2,22 @@ package com.example.iotremote.listview_asset;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.iotremote.LoginActivity;
 import com.example.iotremote.R;
 import com.example.iotremote.assetdetail_database.DatabaseHandler;
+import com.example.iotremote.chart_database.chart.LineChartActivity;
 import com.example.iotremote.databinding.ActivityListviewBinding;
 
 import java.util.ArrayList;
 import com.example.iotremote.MainActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class LvActivity extends AppCompatActivity {
 
@@ -47,6 +52,33 @@ public class LvActivity extends AppCompatActivity {
                 i.putExtra("id_dtb", position+1);
                 i.putExtra("imageid",imageId[position]);
                 startActivity(i);
+            }
+        });
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.actionhome:
+                        Intent intent = new Intent(LvActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        return true;
+                    case R.id.buttonAList:
+                        Intent intent2 = new Intent(LvActivity.this, LvActivity.class);
+                        startActivity(intent2);
+                        return true;
+                    case R.id.buttonStatistics:
+                        Intent intent3 = new Intent(LvActivity.this, LineChartActivity.class);
+                        startActivity(intent3);
+                        return true;
+                    case R.id.buttonpersonal:
+                        Intent intent4 = new Intent(LvActivity.this, LoginActivity.class);
+                        startActivity(intent4);
+                        return true;
+                    default:
+                        return false;
+                }
             }
         });
 

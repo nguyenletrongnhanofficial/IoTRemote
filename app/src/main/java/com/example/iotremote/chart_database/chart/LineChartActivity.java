@@ -1,11 +1,14 @@
 package com.example.iotremote.chart_database.chart;
 
+import com.example.iotremote.LoginActivity;
 import com.example.iotremote.MainActivity;
 import com.example.iotremote.R;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -15,11 +18,14 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
 import com.example.iotremote.chart_database.ChartDBHandler;
 import com.example.iotremote.chart_database.chart.Spinner.AssetSpin;
 import com.example.iotremote.chart_database.chart.Spinner.AssetSpinAdapter;
 import com.example.iotremote.chart_database.chart.Spinner.ValueSpin;
 import com.example.iotremote.chart_database.chart.Spinner.ValueSpinAdapter;
+import com.example.iotremote.listview_asset.LvActivity;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.Legend.LegendForm;
@@ -32,6 +38,7 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -158,6 +165,33 @@ public class LineChartActivity extends ChartBase implements
         rightAxis.setDrawGridLines(false);
         rightAxis.setDrawZeroLine(false);
         rightAxis.setGranularityEnabled(false);
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.actionhome:
+                        Intent intent = new Intent(LineChartActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        return true;
+                    case R.id.buttonAList:
+                        Intent intent2 = new Intent(LineChartActivity.this, LvActivity.class);
+                        startActivity(intent2);
+                        return true;
+                    case R.id.buttonStatistics:
+                        Intent intent3 = new Intent(LineChartActivity.this, LineChartActivity.class);
+                        startActivity(intent3);
+                        return true;
+                    case R.id.buttonpersonal:
+                        Intent intent4 = new Intent(LineChartActivity.this, LoginActivity.class);
+                        startActivity(intent4);
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+        });
 
     }
     private  List<AssetSpin> getAssetListCategory(){
