@@ -9,8 +9,6 @@ public class LvAsset {
         this.name = name;
         this.ID = id;
         this.Status = status;
-//        this.phoneNo = phoneNo;
-//        this.country = country;
         this.imageId = imageId;
     }
 }

@@ -46,7 +46,6 @@ public class LineChartActivity extends ChartBase implements
     int img;
     private SeekBar seekBar;
     private int barvalue=5;
-//    private TextView tvX, tvY;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +66,6 @@ public class LineChartActivity extends ChartBase implements
         spnAsset.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                //Toast.makeText(LineChartActivity.this,AssetAdapter.getItem(i).getName(),Toast.LENGTH_SHORT).show();
                 img = AssetAdapter.getItem(i).getImg();
                 choosingAsset = AssetAdapter.getItem(i).getName();
                 chart.invalidate();
@@ -81,7 +79,6 @@ public class LineChartActivity extends ChartBase implements
         spnValue.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                //Toast.makeText(LineChartActivity.this,ValueAdapter.getItem(i).getName(),Toast.LENGTH_SHORT).show();
                 img = ValueAdapter.getItem(i).getImg();
                 choosingValue = ValueAdapter.getItem(i).getName();
             }
@@ -96,7 +93,7 @@ public class LineChartActivity extends ChartBase implements
             @Override
             public void onClick(View v) {
                 updatedate(barvalue);
-                Toast.makeText(LineChartActivity.this,"" +choosingAsset+ choosingValue,Toast.LENGTH_SHORT).show();
+                Toast.makeText(LineChartActivity.this,"Loading\n" +choosingAsset+ " "+ choosingValue,Toast.LENGTH_SHORT).show();
                 List <Float> a = db_chart.getValueData(choosingAsset,choosingValue,barvalue);
                 setData(barvalue, barvalue, a);
                 chart.invalidate();
@@ -111,30 +108,23 @@ public class LineChartActivity extends ChartBase implements
         // no description text
         chart.getDescription().setEnabled(false);
 
-        // enable touch gestures
         chart.setTouchEnabled(true);
 
         chart.setDragDecelerationFrictionCoef(0.9f);
 
-        // enable scaling and dragging
         chart.setDragEnabled(true);
         chart.setScaleEnabled(true);
         chart.setDrawGridBackground(false);
         chart.setHighlightPerDragEnabled(true);
 
-        // if disabled, scaling can be done on x- and y-axis separately
         chart.setPinchZoom(true);
 
-        // set an alternative background color
         chart.setBackgroundColor(Color.WHITE);
 
-        // add data
         chart.animateX(1500);
 
-        // get the legend (only possible after setting data)
         Legend l = chart.getLegend();
 
-        // modify the legend ...
         l.setForm(LegendForm.LINE);
         l.setTypeface(tfLight);
         l.setTextSize(11f);
@@ -186,7 +176,20 @@ public class LineChartActivity extends ChartBase implements
         return list;
     }
     private void setData(int count, float range, List<Float> values) {
-        int Max = getMaxValue(values)*3;
+//        int Max = getMaxValue(values)*3;
+        int Max =200;
+        if (choosingValue == "Humidity (%)"){
+            Max = 200;
+        }
+        else if (choosingValue == "Temperature (°C)"){
+            Max = 100;
+        }
+        else if (choosingValue == "Wind direction"){
+            Max = 700;
+        }
+        else if (choosingValue == "Wind speed (km/h)"){
+            Max = 8;
+        }
         YAxis leftAxis = chart.getAxisLeft();
         leftAxis.setTypeface(tfLight);
         leftAxis.setTextColor(ColorTemplate.getHoloBlue());
@@ -218,7 +221,6 @@ public class LineChartActivity extends ChartBase implements
             chart.getData().notifyDataChanged();
             chart.notifyDataSetChanged();
         } else {
-            // create a dataset and give it a type
             set1 = new LineDataSet(values1, choosingValue);
 
             set1.setAxisDependency(AxisDependency.LEFT);
@@ -231,12 +233,10 @@ public class LineChartActivity extends ChartBase implements
             set1.setHighLightColor(Color.rgb(244, 117, 117));
             set1.setDrawCircleHole(false);
 
-            // create a data object with the data sets
             LineData data = new LineData(set1);
             data.setValueTextColor(Color.BLUE);
             data.setValueTextSize(9f);
 
-            // set data
             chart.setData(data);
         }
     }
@@ -259,15 +259,15 @@ public class LineChartActivity extends ChartBase implements
         end_.setText(""+day+ "/"+month+ "/"+year);
 
     }
-    private int getMaxValue(List <Float> values){
-        float max = 0;
-        for (int i=0; i< values.size()-1; i++){
-            if (values.get(i) > values.get(i+1))
-                max = values.get(i);
-        }
-        int max_int = (int) max+1;
-        return max_int;
-    }
+//    private int getMaxValue(List <Float> values){
+//        float max = 0;
+//        for (int i=0; i< values.size()-1; i++){
+//            if (values.get(i) > values.get(i+1))
+//                max = values.get(i);
+//        }
+//        int max_int = (int) max+1;
+//        return max_int;
+//    }
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         barvalue = progress;

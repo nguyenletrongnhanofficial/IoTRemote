@@ -6,7 +6,12 @@
         android:icon="@drawable/ic_baseline_map_24"
         />
     <item
-        android:id="@+id/buttonpulse"
+        android:id="@+id/buttonAList"
+        android:title="Assets List"
+        android:icon="@drawable/ic_baseline_view_list_24"
+        />
+    <item
+        android:id="@+id/buttonStatistics"
         android:title="Statistics"
         android:icon="@drawable/pulse"
         />

@@ -7,7 +7,7 @@
     tools:context=".listview_asset.LvActivity">
 
     <TextView
-        android:id="@+id/tv_stastics"
+        android:id="@+id/tv_asset_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Asset List"
@@ -24,7 +24,7 @@
         android:id="@+id/listview"
         tools:listitem="@layout/list_item"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_stastics"
+        app:layout_constraintTop_toBottomOf="@+id/tv_asset_list"
         />
 
 

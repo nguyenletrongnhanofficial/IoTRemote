@@ -36,15 +36,15 @@ public class ListAdapter extends ArrayAdapter<LvAsset> {
 
         }
 
-        ImageView imageView = convertView.findViewById(R.id.profile_pic);
-        TextView userName = convertView.findViewById(R.id.personName);
-        TextView lastMsg = convertView.findViewById(R.id.lastMessage);
-        TextView time = convertView.findViewById(R.id.msgtime);
+        ImageView imageView = convertView.findViewById(R.id.asset_pic);
+        TextView AssetName = convertView.findViewById(R.id.assetName);
+        TextView AssetID = convertView.findViewById(R.id.assetID);
+        TextView AssetStatus = convertView.findViewById(R.id.asset_Status);
 
         imageView.setImageResource(lvAsset.imageId);
-        userName.setText(lvAsset.name);
-        lastMsg.setText(lvAsset.ID);
-        time.setText(lvAsset.Status);
+        AssetName.setText(lvAsset.name);
+        AssetID.setText(lvAsset.ID);
+        AssetStatus.setText(lvAsset.Status);
 
 
         return convertView;
