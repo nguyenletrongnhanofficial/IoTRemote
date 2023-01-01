@@ -138,6 +138,15 @@ public class ChartDBHandler extends SQLiteOpenHelper {
         }
         return 0;
     }
+    public String getDate (int day, int month, int year, int n_day){
+        SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_CONTACTS, null);
+        cursor.moveToPosition(cursor.getCount() - (n_day*3+1));
+        @SuppressLint("Range") String DB_day = cursor.getString(cursor.getColumnIndex(KEY_DATA_6));
+        @SuppressLint("Range") String DB_month = cursor.getString(cursor.getColumnIndex(KEY_DATA_7));
+        @SuppressLint("Range") String DB_year = cursor.getString(cursor.getColumnIndex(KEY_DATA_8));
+        return "" +DB_day + "/" + DB_month + "/" + DB_year;
+    }
     public int getContactsCount() {
         String countQuery = "SELECT  * FROM " + TABLE_CONTACTS;
         SQLiteDatabase db = this.getReadableDatabase();

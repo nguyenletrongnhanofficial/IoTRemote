@@ -176,7 +176,6 @@ public class LineChartActivity extends ChartBase implements
         return list;
     }
     private void setData(int count, float range, List<Float> values) {
-//        int Max = getMaxValue(values)*3;
         int Max =200;
         if (choosingValue == "Humidity (%)"){
             Max = 200;
@@ -245,14 +244,7 @@ public class LineChartActivity extends ChartBase implements
         int day = c.get(Calendar.DAY_OF_MONTH);
         int month = c.get(Calendar.MONTH)+1;
         int year = c.get(Calendar.YEAR);
-        String date_start;
-        if (day > day_count) {
-            date_start = (day-day_count) + "/" + month + "/"+year;
-        }
-        else if (day < day_count && month !=1){
-            date_start = (day+(30-day_count)) + "/" + (month-1) + "/"+year;
-        }
-        else date_start = (day+(30-day_count)) + "/" + 12 + "/"+ (year-1);
+        String date_start = db_chart.getDate(day,month,year,barvalue);
         TextView start_ = findViewById(R.id.date_start_line_chart);
         TextView end_ = findViewById(R.id.date_end_line_chart);
         start_.setText(date_start);
