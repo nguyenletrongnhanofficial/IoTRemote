@@ -2,23 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/actionhome"
-        android:title="@string/button_home"
-        android:icon="@drawable/home"
+        android:title="Map"
+        android:icon="@drawable/ic_baseline_map_24"
         />
     <item
-        android:id="@+id/buttonpulse"
-        android:title="@string/button_pulse"
+        android:id="@+id/buttonAList"
+        android:title="Assets List"
+        android:icon="@drawable/ic_baseline_view_list_24"
+        />
+    <item
+        android:id="@+id/buttonStatistics"
+        android:title="Statistics"
         android:icon="@drawable/pulse"
         />
     <item
-        android:id="@+id/buttonmenu"
-        android:title="@string/button_menu"
-        android:icon="@drawable/menu"
-        />
-    <item
         android:id="@+id/buttonpersonal"
-        android:title="@string/button_personal"
-        android:icon="@drawable/user"/>
+        android:title="Logout"
+        android:icon="@drawable/ic_baseline_logout_24"/>
 
 
 

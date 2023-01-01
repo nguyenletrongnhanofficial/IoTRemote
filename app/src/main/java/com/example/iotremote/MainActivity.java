@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     public static ChartDBHandler db_chart;
     private MapView map;
     private ArrayList<OverlayItem> items = new ArrayList<>();
-    int test=1;
+    int db_num =1;
     int saveDataTrigger =0;
     @Override
     protected void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
@@ -50,11 +50,11 @@ public class MainActivity extends AppCompatActivity {
         );
         db = new DatabaseHandler(this);
         db_chart = new ChartDBHandler(this);
+        //db_chart.deleteTable();
         Calendar c = Calendar.getInstance();
         int day = c.get(Calendar.DAY_OF_MONTH);
         int month = c.get(Calendar.MONTH)+1;
         int year = c.get(Calendar.YEAR);
-        //Toast.makeText(MainActivity.this, ""+db_chart.checkDate(day,month,year), Toast.LENGTH_LONG).show();
         if (db_chart.checkDate(day,month,year) == 0){
             Toast.makeText(MainActivity.this, "Loaded data to database", Toast.LENGTH_LONG).show();
             saveDataTrigger =1;
@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<Float> assetInfo = assetRtn.getAttributes().getLocation().getValue().getCoordinates();
         String assetName = assetRtn.getName();
         String assetID = assetRtn.getId();
-        items.add(new OverlayItem(""+assetName, "Database Location: "+test, new GeoPoint(assetInfo.get(1), assetInfo.get(0)))); test++;
+        items.add(new OverlayItem(""+assetName, "Database Location: "+ db_num, new GeoPoint(assetInfo.get(1), assetInfo.get(0)))); db_num++;
         ItemizedOverlayWithFocus<OverlayItem> mOverlay = new ItemizedOverlayWithFocus<OverlayItem>(getApplicationContext(), items, new ItemizedIconOverlay.OnItemGestureListener<OverlayItem>() {
             @Override
             public boolean onItemSingleTapUp(int index, OverlayItem item) {
@@ -190,10 +190,18 @@ public class MainActivity extends AppCompatActivity {
                 StartInsightIntent();
             }
         });
+        Button btn_2 = bottomSheetDialog.findViewById(R.id.button_show_statistics);
+        btn_2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, LineChartActivity.class);
+                startActivity(intent);
+            }
+        });
         bottomSheetDialog.show();
     }
     private void StartInsightIntent(){
-        Intent intent = new Intent(MainActivity.this, LineChartActivity.class);
+        Intent intent = new Intent(MainActivity.this, LvActivity.class);
         startActivity(intent);
     }
 }

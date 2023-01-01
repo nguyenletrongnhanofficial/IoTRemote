@@ -5,88 +5,81 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".chart_database.chart.LineChartActivity">
+    <TextView
+        android:id="@+id/tv_stastics"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="Statistics"
+        android:textSize="50sp"
+        android:fontFamily="@font/roboto_bold"
+        />
 
     <TextView
-        android:id="@+id/txtNameDish"
+        android:id="@+id/tv_asset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
         android:text="Asset: "
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_stastics"
         tools:ignore="MissingConstraints"
-        android:layout_marginLeft="10dp" />
+        android:fontFamily="@font/roboto_bold"/>
 
     <Spinner
         android:id="@+id/spnThumbnail2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/layout_spinner"
-        android:layout_marginTop="10dp"
-        android:paddingBottom="8dp"
         android:layout_marginStart="145dp"
         android:layout_marginEnd="10dp"
+        android:background="@drawable/layout_spinner"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtNameDish"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints"
-        android:layout_marginLeft="145dp"
-        android:layout_marginRight="10dp" />
+        app:layout_constraintStart_toEndOf="@+id/tv_asset"
+        app:layout_constraintTop_toBottomOf="@+id/tv_stastics"
+        tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/txtNameEmployee"
+        android:id="@+id/tv_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="Value: "
         android:textColor="@color/black"
         android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/txtNameDish"
-        app:layout_constraintTop_toBottomOf="@+id/txtNameDish"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintStart_toStartOf="@+id/tv_asset"
+        app:layout_constraintTop_toBottomOf="@+id/tv_asset"
+        tools:ignore="MissingConstraints"
+        android:fontFamily="@font/roboto_bold"/>
 
     <Spinner
         android:id="@+id/spnThumbnail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/layout_spinner"
-        android:layout_marginTop="10dp"
-        android:paddingBottom="8dp"
+        android:layout_marginTop="5dp"
         android:layout_marginStart="145dp"
         android:layout_marginEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtNameEmployee"
+        app:layout_constraintStart_toEndOf="@+id/tv_value"
         app:layout_constraintTop_toBottomOf="@+id/spnThumbnail2"
         android:layout_marginLeft="145dp"
         android:layout_marginRight="10dp" />
 
-    <TextView
-        android:id="@+id/txtPromotion"
-        android:layout_width="wrap_content"
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Compare: "
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        app:layout_constraintStart_toStartOf="@+id/txtNameEmployee"
-        app:layout_constraintTop_toBottomOf="@+id/txtNameEmployee"
-        tools:ignore="MissingConstraints" />
-
-    <CheckBox
-        android:id="@+id/check_promotion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="@+id/txtPromotion"
-        app:layout_constraintStart_toEndOf="@+id/txtPromotion"
-        app:layout_constraintTop_toTopOf="@+id/txtPromotion"
-        tools:ignore="MissingConstraints"
-        android:layout_marginLeft="25dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnAddfillter"
+        android:max="10"
+        android:progress="5"
+        android:paddingTop="26dp" />
 
     <Button
         android:id="@+id/btnAddfillter"
@@ -95,16 +88,32 @@
         android:layout_marginTop="15dp"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
-        android:paddingLeft="20dp"
-        android:paddingTop="10dp"
-        android:paddingRight="20dp"
-        android:paddingBottom="10dp"
-        android:background="@color/teal_200"
+        android:background="@color/purple_500"
+        android:textSize="22dp"
         android:text="ADD FILLTER"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/check_promotion" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_value" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/date_start_line_chart"
+        android:layout_marginTop="5dp"
+        android:text="1/1/2002"
+        android:textSize="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/seekBar"></TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/date_end_line_chart"
+        android:layout_marginTop="5dp"
+        android:text="11/1/2002"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/seekBar"></TextView>
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/chart1"
         android:layout_width="match_parent"
@@ -113,5 +122,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAddfillter" />
+        app:layout_constraintTop_toBottomOf="@+id/date_start_line_chart" />
 </androidx.constraintlayout.widget.ConstraintLayout>

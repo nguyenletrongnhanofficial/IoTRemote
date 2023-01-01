@@ -48,26 +48,29 @@ public class ChartDBHandler extends SQLiteOpenHelper {
                 +KEY_DATA_7 + " TEXT," +KEY_DATA_8 + " TEXT" + ")";
         db.execSQL(createTable);
         ContentValues values = new ContentValues();
-        values.put(KEY_NAME, "Not null name");
-        values.put(KEY_DATA_1, "Not null id");
-        values.put(KEY_DATA_2, "Not null humidity");
-        values.put(KEY_DATA_3, "Not null temperature");
-        values.put(KEY_DATA_4, "Not null wind_direction");
-        values.put(KEY_DATA_5, "Not null wind_speed");
-        values.put(KEY_DATA_6, "31");
-        values.put(KEY_DATA_7, "12");
+        values.put(KEY_NAME, "Weather Asset");
+        values.put(KEY_DATA_1, "6H4PeKLRMea1L0WsRXXWp9");
+        values.put(KEY_DATA_2, ""+(float)Math.round(Math.random()*1000)/10);
+        values.put(KEY_DATA_3, ""+(float)Math.round(Math.random()*300)/10);
+        values.put(KEY_DATA_4, ""+(float)Math.round(Math.random()*3600)/10);
+        values.put(KEY_DATA_5, ""+rand());
+        values.put(KEY_DATA_6, "1");
+        values.put(KEY_DATA_7, "1");
         values.put(KEY_DATA_8, "2001");
         db.insert(TABLE_CONTACTS, null, values);
-        Log.d("Data", createTable);
+        ContentValues values2 = new ContentValues();
     }
-
+    private float rand(){
+        float a = (float)Math.round(Math.random()*300)/100;
+        return a;
+    }
     // Upgrading database
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop older table if existed
-//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTACTS);
+        //db.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTACTS);
         // Create tables again
-//        onCreate(db);
+        //onCreate(db);
     }
 
     // code to add the new contact
@@ -89,38 +92,35 @@ public class ChartDBHandler extends SQLiteOpenHelper {
         values.put(KEY_DATA_8, ""+ year);
         db.insert(TABLE_CONTACTS, null, values);
     }
-//    private String check_null_data(double a){
-//        String f = ""+a;
-//        if (a != -0.1)
-//            return f;
-//        else
-//            return "No data";
-//    }
     @SuppressLint("Range")
-    public List<AssetDailyData> getAllDailyData()
-    {
-        List<AssetDailyData> AssetDDList = new ArrayList<>();
+    public List<Float> getValueData(String assetname, String valuename, int range){
+        List<Float> a = new ArrayList<>();
+        String z = "";
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
         Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_CONTACTS, null);
-        cursor.moveToNext();
+        cursor.moveToPosition(cursor.getCount() - ((range)*3+1));
         while(cursor.moveToNext())
         {
-            int id = cursor.getInt(cursor.getColumnIndex(KEY_ID));
-            String name = cursor.getString(cursor.getColumnIndex(KEY_NAME));
-            String id_asset = cursor.getString(cursor.getColumnIndex(KEY_DATA_1));
-            String humi = cursor.getString(cursor.getColumnIndex(KEY_DATA_2));
-            String temp = cursor.getString(cursor.getColumnIndex(KEY_DATA_3));
-            String winddir = cursor.getString(cursor.getColumnIndex(KEY_DATA_4));
-            String windsp = cursor.getString(cursor.getColumnIndex(KEY_DATA_5));
-            String day = cursor.getString(cursor.getColumnIndex(KEY_DATA_6));
-            String month = cursor.getString(cursor.getColumnIndex(KEY_DATA_7));
-            String year = cursor.getString(cursor.getColumnIndex(KEY_DATA_8));
-            AssetDailyData AssetDD = new AssetDailyData(name, id_asset, humi, temp, winddir, windsp, day, month, year);
-            AssetDD.setId_(id);
-            AssetDDList.add(AssetDD);
+            z = cursor.getString(cursor.getColumnIndex(KEY_NAME));
+            if (assetname. equals(z)){
+                if (valuename == "Humidity (%)"){
+                    a.add(Float.parseFloat(cursor.getString(cursor.getColumnIndex(KEY_DATA_2))));
+                }
+                else if (valuename == "Temperature (°C)"){
+                    a.add(Float.parseFloat(cursor.getString(cursor.getColumnIndex(KEY_DATA_3))));
+                }
+                else if (valuename == "Wind direction"){
+                    a.add(Float.parseFloat(cursor.getString(cursor.getColumnIndex(KEY_DATA_4))));
+                }
+                else if (valuename == "Wind speed (km/h)"){
+                    a.add(Float.parseFloat(cursor.getString(cursor.getColumnIndex(KEY_DATA_5))));
+
+                }
+            }
         }
-        return AssetDDList;
+        return a;
     }
+
     public void deleteTable()
     {
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
