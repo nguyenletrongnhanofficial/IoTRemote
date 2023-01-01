@@ -13,7 +13,7 @@
     <string name="button_personal">Button Personal</string>
     <string name="button_menu">Button Menu</string>
     <string name="button_home">Button Home</string>
-    <string name="sign_in_1">Welcome back! Nice to see you</string>
+    <string name="sign_in_1">Welcome back! Nice to see you 👋</string>
     <string name="sign_in_2">Email</string>
     <string name="sign_in_3">Your Password</string>
     <string name="sign_in_4">Forget Password?</string>
@@ -39,5 +39,11 @@
     <string name="asset_detail_6">Daily tariff</string>
     <string name="asset_detail_7">Hourly tariff</string>
     <string name="quen_mat_khau">Quên mật khẩu</string>
-    <string name="verifying">Verifying</string>
+    <string name="verifying">Verifying</string>\
+    <string name="hd_map">Bản đồ</string>
+    <string name="hd_viewmap">Xem chi tiết</string>
+    <string name="hd_chart">Trực quang</string>
+    <string name="derc_map">Với IoTRemote bạn có thể xem asset ở các nơi khả dụng</string>
+    <string name="derc_view_map">Bạn có thể xem chi tiết thông số các asset khả dụng mà bạn chọn</string>
+    <string name="derc_chart">Bạn xem chi tiết thông số một cách trực quan dưới dạng biểu đồ</string>
 </resources>

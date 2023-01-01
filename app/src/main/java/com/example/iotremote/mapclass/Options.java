@@ -14,4 +14,7 @@ public class Options {
 
     @SerializedName("default")
     private Default defaults;
+
+    public static class Onboarding {
+    }
 }

@@ -29,6 +29,15 @@
         <activity
             android:name=".RegisterActivity">
         </activity>
+        <activity
+            android:name=".ForgetPassActivity">
+        </activity>
+        <activity
+            android:name=".Onboarding">
+        </activity>
+        <activity
+            android:name=".LoginActivity">
+        </activity>
         <activity android:name=".listview_asset.LvActivity"></activity>
         <activity android:name=".listview_asset.AssetActivity"></activity>
         <activity android:name=".chart_database.chart.LineChartActivity" />
