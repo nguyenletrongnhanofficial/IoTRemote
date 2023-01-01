@@ -27,8 +27,6 @@ public class LvActivity extends AppCompatActivity {
         String[] name = {""+db_.getAsset(1).getName() ,""+db_.getAsset(2).getName(),""+db_.getAsset(3).getName()};
         String[] id_asset = {""+db_.getAsset(1).getId_asset(),""+db_.getAsset(2).getId_asset(),""+db_.getAsset(3).getId_asset()};
         String[] status = {"Online","Online","Online"};
-//        String[] phoneNo = {"7656610000","9999043232","7834354323"};
-//        String[] country = {"United States","Russia","India"};
         ArrayList<LvAsset> userArrayList = new ArrayList<>();
 
         for(int i = 0;i< imageId.length;i++){
@@ -46,13 +44,9 @@ public class LvActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Intent i = new Intent(LvActivity.this, AssetActivity.class);
-//                i.putExtra("name",name[position]);
-//                i.putExtra("id",id_asset[position]);
-//                i.putExtra("country",country[position]);
                 i.putExtra("id_dtb", position+1);
                 i.putExtra("imageid",imageId[position]);
                 startActivity(i);
-
             }
         });
 
