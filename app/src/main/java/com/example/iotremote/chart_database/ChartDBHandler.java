@@ -93,12 +93,12 @@ public class ChartDBHandler extends SQLiteOpenHelper {
         db.insert(TABLE_CONTACTS, null, values);
     }
     @SuppressLint("Range")
-    public List<Float> getValueData(String assetname, String valuename, int range){
+    public List<Float> getValueData(String assetname, String valuename, int range, int device_count){
         List<Float> a = new ArrayList<>();
         String z = "";
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
         Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_CONTACTS, null);
-        cursor.moveToPosition(cursor.getCount() - ((range)*3+1));
+        cursor.moveToPosition(cursor.getCount() - ((range)*device_count+1));
         while(cursor.moveToNext())
         {
             z = cursor.getString(cursor.getColumnIndex(KEY_NAME));
@@ -138,10 +138,10 @@ public class ChartDBHandler extends SQLiteOpenHelper {
         }
         return 0;
     }
-    public String getDate (int day, int month, int year, int n_day){
+    public String getDate (int day, int month, int year, int n_day, int device_count){
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
         Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_CONTACTS, null);
-        cursor.moveToPosition(cursor.getCount() - (n_day*3+1));
+        cursor.moveToPosition(cursor.getCount() - (n_day*device_count+1));
         @SuppressLint("Range") String DB_day = cursor.getString(cursor.getColumnIndex(KEY_DATA_6));
         @SuppressLint("Range") String DB_month = cursor.getString(cursor.getColumnIndex(KEY_DATA_7));
         @SuppressLint("Range") String DB_year = cursor.getString(cursor.getColumnIndex(KEY_DATA_8));

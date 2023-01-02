@@ -93,7 +93,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
     @SuppressLint("Range")
     public AssetDetail getAsset(int id) {
-        AssetDetail asd = null;
+        AssetDetail asd = new AssetDetail(""+1,""+1,""+1,""+1,""+1,""+1,""+1,""+1,""+1,""+1,""+1,""+1,""+1);
         int idRoot;
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_CONTACTS, null);
@@ -132,6 +132,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         cursor.close();
 
         return cursor.getCount();
+    }
+    public int getDBCount(){
+        String countQuery = "SELECT  * FROM " + TABLE_CONTACTS;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+        int count = cursor.getCount();
+        return count;
     }
 
 }
