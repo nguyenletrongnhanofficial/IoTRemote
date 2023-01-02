@@ -5,12 +5,15 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.iotremote.api.ApiService;
@@ -45,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<OverlayItem> items = new ArrayList<>();
     int db_num =1;
     int saveDataTrigger =0;
+    int assetLoaded =3;
     @Override
     protected void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -167,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    private void loadAssetToMap(AssetCs assetRtn){
+    public void loadAssetToMap(AssetCs assetRtn){
         ArrayList<Float> assetInfo = assetRtn.getAttributes().getLocation().getValue().getCoordinates();
         String assetName = assetRtn.getName();
         String assetID = assetRtn.getId();
@@ -183,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-        mOverlay.setFocusItemsOnTap(true);
+        mOverlay.setFocusItemsOnTap(false);
         map.getOverlays().add(mOverlay);
     }
     private void showBottomSheetDialog(String assetDB_Loca) {
@@ -214,5 +218,63 @@ public class MainActivity extends AppCompatActivity {
         windsp.setText(db.getAsset(loca).getWind_speed());
         assetName.setText(db.getAsset(loca).getName() + "\nID: " + db.getAsset(loca).getId_asset());
         bottomSheetDialog.show();
+        Button btn_add_asset = bottomSheetDialog.findViewById(R.id.btn_add_asset_10);
+        btn_add_asset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                assetLoaded++;
+                if (assetLoaded <=6)
+                    showAddDialog();
+            }
+        });
+    }
+    private void showAddDialog(){
+        Dialog dialog = new Dialog(MainActivity.this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.add_asset);
+        EditText assetName = dialog.findViewById(R.id.asset_add_et_1);
+        EditText assetID = dialog.findViewById(R.id.asset_add_et_2);
+        EditText assetX = dialog.findViewById(R.id.asset_add_et_3);
+        EditText assetY = dialog.findViewById(R.id.asset_add_et_4);
+        EditText assetHumidity = dialog.findViewById(R.id.asset_add_et_5);
+        EditText assetRainfall = dialog.findViewById(R.id.asset_add_et_6);
+        EditText assetSun_altitude = dialog.findViewById(R.id.asset_add_et_7);
+        EditText assetSun_azimuth = dialog.findViewById(R.id.asset_add_et_8);
+        EditText assetSun_irradiance = dialog.findViewById(R.id.asset_add_et_9);
+        EditText assetSun_zenith = dialog.findViewById(R.id.asset_add_et_10);
+        EditText assetTemperature = dialog.findViewById(R.id.asset_add_et_11);
+        EditText assetUV_index = dialog.findViewById(R.id.asset_add_et_12);
+        EditText assetWind_direction = dialog.findViewById(R.id.asset_add_et_13);
+        EditText assetWind_speed = dialog.findViewById(R.id.asset_add_et_14);
+        Button butAdd = dialog.findViewById(R.id.asset_add_btn_add);
+        butAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String name = assetName.getText().toString().trim();
+                String ID = assetID.getText().toString().trim();
+                Float locationX = Float.parseFloat(assetX.getText().toString().trim());
+                Float locationY = Float.parseFloat(assetY.getText().toString().trim());
+                String hum = assetHumidity.getText().toString().trim();
+                String rain = assetRainfall.getText().toString().trim();
+                String sun1 = assetSun_altitude.getText().toString().trim();
+                String sun2 = assetSun_azimuth.getText().toString().trim();
+                String sun3 = assetSun_irradiance.getText().toString().trim();
+                String sun4 = assetSun_zenith.getText().toString().trim();
+                String temp = assetTemperature.getText().toString().trim();
+                String uv = assetUV_index.getText().toString().trim();
+                String wind1 = assetWind_direction.getText().toString().trim();
+                String wind2 = assetWind_speed.getText().toString().trim();
+                ArrayList<Float> arList = new ArrayList<>();
+                arList.add(locationX);
+                arList.add(locationY);
+                AssetCs assetCs_10;
+                assetCs_10 = new AssetCs(name, ID, hum, rain, sun1, sun2, sun3, sun4, temp, uv, wind1, wind2, arList);
+                loadAssetToMap(assetCs_10);
+                db.addAsset(assetCs_10);
+                Toast.makeText(getApplicationContext(), "Add Successfully!", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
 }
