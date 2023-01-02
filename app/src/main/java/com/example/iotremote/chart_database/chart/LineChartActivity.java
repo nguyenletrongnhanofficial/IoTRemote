@@ -53,6 +53,7 @@ public class LineChartActivity extends ChartBase implements
     int img;
     private SeekBar seekBar;
     private int barvalue=5;
+    private int device_count=3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,7 +102,7 @@ public class LineChartActivity extends ChartBase implements
             public void onClick(View v) {
                 updatedate(barvalue);
                 Toast.makeText(LineChartActivity.this,"Loading\n" +choosingAsset+ " "+ choosingValue,Toast.LENGTH_SHORT).show();
-                List <Float> a = db_chart.getValueData(choosingAsset,choosingValue,barvalue);
+                List <Float> a = db_chart.getValueData(choosingAsset,choosingValue,barvalue, device_count);
                 setData(barvalue, barvalue, a);
                 chart.invalidate();
             }
@@ -280,7 +281,7 @@ public class LineChartActivity extends ChartBase implements
         int day = c.get(Calendar.DAY_OF_MONTH);
         int month = c.get(Calendar.MONTH)+1;
         int year = c.get(Calendar.YEAR);
-        String date_start = db_chart.getDate(day,month,year,barvalue);
+        String date_start = db_chart.getDate(day,month,year,barvalue,device_count);
         TextView start_ = findViewById(R.id.date_start_line_chart);
         TextView end_ = findViewById(R.id.date_end_line_chart);
         start_.setText(date_start);

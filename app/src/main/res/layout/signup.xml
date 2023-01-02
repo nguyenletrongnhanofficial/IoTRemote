@@ -13,7 +13,7 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/tv_1"
+            android:id="@+id/signup_tv1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -22,12 +22,12 @@
             android:text="@string/sign_up_1"
             android:textColor="@color/black"
             android:textSize="35sp"
-            app:layout_constraintBottom_toTopOf="@id/et_4"
+            app:layout_constraintBottom_toTopOf="@id/et_signup_username"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/et_4"
+            android:id="@+id/et_signup_username"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginStart="10dp"
@@ -36,16 +36,17 @@
             android:background="@drawable/ngoc_textbox_1"
             android:fontFamily="@font/roboto"
             android:hint="@string/sign_up_2"
+            android:singleLine="true"
             android:inputType="textEmailAddress"
             android:padding="10dp"
             android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@id/et_email"
+            app:layout_constraintBottom_toTopOf="@id/et_signup_email"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_1" />
+            app:layout_constraintTop_toBottomOf="@id/signup_tv1" />
 
         <EditText
-            android:id="@+id/et_email"
+            android:id="@+id/et_signup_email"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginStart="10dp"
@@ -54,13 +55,14 @@
             android:background="@drawable/ngoc_textbox_1"
             android:fontFamily="@font/roboto"
             android:hint="@string/sign_up_3"
+            android:singleLine="true"
             android:inputType="textEmailAddress"
             android:padding="10dp"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/tv_5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_4" />
+            app:layout_constraintTop_toBottomOf="@+id/et_signup_username" />
 
         <EditText
             android:id="@+id/tv_5"
@@ -72,6 +74,7 @@
             android:background="@drawable/ngoc_textbox_1"
             android:fontFamily="@font/roboto"
             android:hint="@string/sign_up_4"
+            android:singleLine="true"
             android:inputType="textPassword"
             android:padding="10dp"
             android:password="true"
@@ -79,7 +82,7 @@
             app:layout_constraintBottom_toTopOf="@id/et_password_2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/et_email" />
+            app:layout_constraintTop_toBottomOf="@id/et_signup_email" />
 
         <EditText
             android:id="@+id/et_password_2"
@@ -91,6 +94,7 @@
             android:background="@drawable/ngoc_textbox_1"
             android:fontFamily="@font/roboto"
             android:hint="@string/sign_up_5"
+            android:singleLine="true"
             android:inputType="textPassword"
             android:padding="10dp"
             android:password="true"

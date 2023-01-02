@@ -18,14 +18,14 @@
             android:layout_width="198dp"
             android:layout_height="202dp"
             android:background="@drawable/login"
-            app:layout_constraintBottom_toTopOf="@id/tv_1"
+            app:layout_constraintBottom_toTopOf="@id/tv_login_"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0"></pl.droidsonroids.gif.GifImageView>
 
         <TextView
-            android:id="@+id/tv_1"
+            android:id="@+id/tv_login_"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/sign_in_1"
@@ -33,12 +33,12 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             app:layout_constraintTop_toBottomOf="@+id/gif_login"
-            app:layout_constraintBottom_toTopOf="@id/et_email"
+            app:layout_constraintBottom_toTopOf="@id/et_login_username"
             android:fontFamily="@font/roboto_bold"
             android:textColor="@color/black"/>
 
         <EditText
-            android:id="@+id/et_password"
+            android:id="@+id/et_login_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -46,26 +46,28 @@
             android:backgroundTint="#f7f8f9"
             android:fontFamily="@font/roboto"
             android:hint="Enter your password"
+            android:singleLine="true"
             android:padding="15dp"
             android:password="true"
             app:layout_constraintBottom_toTopOf="@+id/btn_forget_pass"
-            app:layout_constraintTop_toBottomOf="@+id/et_email"
+            app:layout_constraintTop_toBottomOf="@+id/et_login_username"
             tools:layout_editor_absoluteX="20dp" />
 
         <EditText
-            android:id="@+id/et_email"
+            android:id="@+id/et_login_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="8dp"
+            android:singleLine="true"
             android:background="@drawable/border"
             android:backgroundTint="#f7f8f9"
             android:fontFamily="@font/roboto"
             android:hint="Enter your Username"
             android:padding="15dp"
-            app:layout_constraintBottom_toTopOf="@id/et_password"
+            app:layout_constraintBottom_toTopOf="@id/et_login_password"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_1" />
+            app:layout_constraintTop_toBottomOf="@id/tv_login_" />
 
         <Button
             android:id="@+id/btn_forget_pass"
@@ -78,13 +80,13 @@
             android:text="@string/sign_in_4"
             android:textColor="@color/black"
             android:textSize="10dp"
-            app:layout_constraintBottom_toTopOf="@id/btn_sign_in"
+            app:layout_constraintBottom_toTopOf="@id/btn_signin"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/et_password"
+            app:layout_constraintTop_toBottomOf="@id/et_login_password"
             app:layout_constraintVertical_bias="0.561" />
 
         <Button
-            android:id="@+id/btn_sign_in"
+            android:id="@+id/btn_signin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -107,7 +109,7 @@
             android:text="@string/sign_in_6"
             android:textAlignment="center"
             app:layout_constraintBottom_toTopOf="@id/btn_google"
-            app:layout_constraintTop_toBottomOf="@id/btn_sign_in"
+            app:layout_constraintTop_toBottomOf="@id/btn_signin"
             tools:layout_editor_absoluteX="40dp"></TextView>
 
         <ImageButton
