@@ -100,11 +100,15 @@ public class LineChartActivity extends ChartBase implements
         btnA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updatedate(barvalue);
-                Toast.makeText(LineChartActivity.this,"Loading\n" +choosingAsset+ " "+ choosingValue,Toast.LENGTH_SHORT).show();
-                List <Float> a = db_chart.getValueData(choosingAsset,choosingValue,barvalue, device_count);
-                setData(barvalue, barvalue, a);
-                chart.invalidate();
+                int dayloaded = (db_chart.getDBCount()-1)/3;
+                if (barvalue <= dayloaded){
+                    updatedate(barvalue);
+                    Toast.makeText(LineChartActivity.this,"Loading\n" +choosingAsset+ " "+ choosingValue,Toast.LENGTH_SHORT).show();
+                    List <Float> a = db_chart.getValueData(choosingAsset,choosingValue,barvalue, device_count);
+                    setData(barvalue, barvalue, a);
+                    chart.invalidate();
+                }
+                else Toast.makeText(LineChartActivity.this,"No data in database\nYou have loaded "+ dayloaded+ " daily data",Toast.LENGTH_SHORT).show();
             }
         });
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////

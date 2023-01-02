@@ -42,7 +42,7 @@
     <string name="verifying">Verifying</string>\
     <string name="hd_map">Bản đồ</string>
     <string name="hd_viewmap">Xem chi tiết</string>
-    <string name="hd_chart">Trực quang</string>
+    <string name="hd_chart">Trực quan</string>
     <string name="derc_map">Với IoTRemote bạn có thể xem asset ở các nơi khả dụng</string>
     <string name="derc_view_map">Bạn có thể xem chi tiết thông số các asset khả dụng mà bạn chọn</string>
     <string name="derc_chart">Bạn xem chi tiết thông số một cách trực quan dưới dạng biểu đồ</string>
