@@ -172,7 +172,7 @@ public class LineChartActivity extends ChartBase implements
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.actionhome:
+                    case R.id.actionMap:
                         Intent intent = new Intent(LineChartActivity.this, MainActivity.class);
                         startActivity(intent);
                         return true;
@@ -184,10 +184,10 @@ public class LineChartActivity extends ChartBase implements
                         Intent intent3 = new Intent(LineChartActivity.this, LineChartActivity.class);
                         startActivity(intent3);
                         return true;
-                    case R.id.buttonpersonal:
-                        Intent intent4 = new Intent(LineChartActivity.this, LoginActivity.class);
-                        startActivity(intent4);
-                        return true;
+//                    case R.id.buttonlogout:
+//                        Intent intent4 = new Intent(LineChartActivity.this, LoginActivity.class);
+//                        startActivity(intent4);
+//                        return true;
                     default:
                         return false;
                 }
@@ -224,6 +224,7 @@ public class LineChartActivity extends ChartBase implements
         else if (choosingValue == "Wind speed (km/h)"){
             Max = 8;
         }
+        chart.clear();
         YAxis leftAxis = chart.getAxisLeft();
         leftAxis.setTypeface(tfLight);
         leftAxis.setTextColor(ColorTemplate.getHoloBlue());
@@ -255,20 +256,20 @@ public class LineChartActivity extends ChartBase implements
             chart.getData().notifyDataChanged();
             chart.notifyDataSetChanged();
         } else {
-            set1 = new LineDataSet(values1, choosingValue);
+            set1 = new LineDataSet(values1, ""+choosingValue);
 
             set1.setAxisDependency(AxisDependency.LEFT);
-            set1.setColor(ColorTemplate.getHoloBlue());
-            set1.setCircleColor(Color.BLUE);
+            set1.setColor(Color.GREEN);
+            set1.setCircleColor(Color.GRAY);
             set1.setLineWidth(2f);
             set1.setCircleRadius(3f);
             set1.setFillAlpha(65);
-            set1.setFillColor(ColorTemplate.getHoloBlue());
+            set1.setFillColor(Color.GREEN);
             set1.setHighLightColor(Color.rgb(244, 117, 117));
             set1.setDrawCircleHole(false);
 
             LineData data = new LineData(set1);
-            data.setValueTextColor(Color.BLUE);
+            data.setValueTextColor(Color.BLACK);
             data.setValueTextSize(9f);
 
             chart.setData(data);

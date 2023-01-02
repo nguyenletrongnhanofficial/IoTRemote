@@ -24,27 +24,7 @@
             android:text="Weather Asset"
             android:layout_gravity="center_vertical"
             android:padding="5dp"
-            android:layout_weight="1"
             android:fontFamily="@font/roboto_bold"
-            android:textColor="@color/black"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/ngoc_backgr_white"
-            android:id="@+id/button_show_insight"
-            android:text="Insight"
-            android:textColor="@color/black"
-            android:fontFamily="@font/roboto_bold"
-            />
-
-        <Button
-            android:id="@+id/button_show_statistics"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/ngoc_backgr_white"
-            android:fontFamily="@font/roboto_bold"
-            android:text="statistics"
-
             android:textColor="@color/black"/>
     </LinearLayout>
 

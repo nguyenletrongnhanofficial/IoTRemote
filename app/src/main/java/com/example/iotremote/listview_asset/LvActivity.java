@@ -61,7 +61,7 @@ public class LvActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.actionhome:
+                    case R.id.actionMap:
                         Intent intent = new Intent(LvActivity.this, MainActivity.class);
                         startActivity(intent);
                         return true;
@@ -73,10 +73,10 @@ public class LvActivity extends AppCompatActivity {
                         Intent intent3 = new Intent(LvActivity.this, LineChartActivity.class);
                         startActivity(intent3);
                         return true;
-                    case R.id.buttonpersonal:
-                        Intent intent4 = new Intent(LvActivity.this, LoginActivity.class);
-                        startActivity(intent4);
-                        return true;
+//                    case R.id.buttonlogout:
+//                        Intent intent4 = new Intent(LvActivity.this, LoginActivity.class);
+//                        startActivity(intent4);
+//                        return true;
                     default:
                         return false;
                 }

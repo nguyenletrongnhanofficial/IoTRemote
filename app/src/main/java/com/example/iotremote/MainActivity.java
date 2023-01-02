@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.actionhome:
+                    case R.id.actionMap:
                         Intent intent = new Intent(MainActivity.this, MainActivity.class);
                         startActivity(intent);
                         return true;
@@ -85,10 +85,10 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent3 = new Intent(MainActivity.this, LineChartActivity.class);
                         startActivity(intent3);
                         return true;
-                    case R.id.buttonpersonal:
-                        Intent intent4 = new Intent(MainActivity.this, LoginActivity.class);
-                        startActivity(intent4);
-                        return true;
+//                    case R.id.buttonlogout:
+//                        Intent intent4 = new Intent(MainActivity.this, LoginActivity.class);
+//                        startActivity(intent4);
+//                        return true;
                     default:
                         return false;
                 }
@@ -213,25 +213,6 @@ public class MainActivity extends AppCompatActivity {
         winddir.setText(db.getAsset(loca).getWind_direction());
         windsp.setText(db.getAsset(loca).getWind_speed());
         assetName.setText(db.getAsset(loca).getName() + "\nID: " + db.getAsset(loca).getId_asset());
-        Button btn_1 = bottomSheetDialog.findViewById(R.id.button_show_insight);
-        btn_1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                StartInsightIntent();
-            }
-        });
-        Button btn_2 = bottomSheetDialog.findViewById(R.id.button_show_statistics);
-        btn_2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, LineChartActivity.class);
-                startActivity(intent);
-            }
-        });
         bottomSheetDialog.show();
-    }
-    private void StartInsightIntent(){
-        Intent intent = new Intent(MainActivity.this, LvActivity.class);
-        startActivity(intent);
     }
 }
