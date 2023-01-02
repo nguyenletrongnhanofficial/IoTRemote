@@ -65,7 +65,7 @@ public class Onboarding extends AppCompatActivity {
     }
 
     private void addDots(int position) {
-        dots = new TextView[3];
+        dots = new TextView[4];
         dotsLayout.removeAllViews();
         for (int i = 0; i < dots.length; i++) {
             dots[i] = new TextView(this);
@@ -92,6 +92,8 @@ public class Onboarding extends AppCompatActivity {
             if (position == 0) {
                 letsGetStarted.setVisibility(View.INVISIBLE);
             } else if (position == 1) {
+                letsGetStarted.setVisibility(View.INVISIBLE);
+            } else if (position == 2) {
                 letsGetStarted.setVisibility(View.INVISIBLE);
             } else if (position == 3) {
                 letsGetStarted.setVisibility(View.VISIBLE);
