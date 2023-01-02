@@ -154,5 +154,12 @@ public class ChartDBHandler extends SQLiteOpenHelper {
         cursor.close();
         return cursor.getCount();
     }
+    public int getDBCount(){
+        String countQuery = "SELECT  * FROM " + TABLE_CONTACTS;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+        int count = cursor.getCount();
+        return count;
+    }
 
 }

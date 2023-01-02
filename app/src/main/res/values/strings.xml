@@ -39,7 +39,7 @@
     <string name="asset_detail_6">Daily tariff</string>
     <string name="asset_detail_7">Hourly tariff</string>
     <string name="quen_mat_khau">Quên mật khẩu</string>
-    <string name="verifying">Verifying</string>\
+    <string name="verifying">Verifying</string>
     <string name="hd_map">VIEW THE MAP</string>
     <string name="hd_viewmap">VIEW DETAILS</string>
     <string name="hd_chart">VISUALIZATIONS</string>
@@ -48,4 +48,5 @@
     <string name="derc_view_map">You can see the detailed parameters of the available assets of your choice</string>
     <string name="derc_chart">You see detailed parameters visually in the form of graphs</string>
     <string name="derc_ai">You can use the voice assistant to command to go to the screen you need or ask how to use the app</string>
+
 </resources>
