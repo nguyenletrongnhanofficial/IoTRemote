@@ -88,10 +88,10 @@
         android:layout_marginTop="15dp"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
-        android:background="@color/purple_500"
+        android:background="@drawable/round_button"
+        android:textColor="@color/white"
         android:textSize="22dp"
         android:text="ADD FILLTER"
-        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_value" />
@@ -114,12 +114,13 @@
         android:textSize="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/seekBar"></TextView>
+
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/chart1"
         android:layout_width="match_parent"
         android:layout_height="0sp"
         android:layout_marginTop="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/date_start_line_chart" />
@@ -132,7 +133,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:itemBackground="@color/white"
-        app:itemIconTint="@color/purple_500"
+        app:itemIconTint="@color/green"
         app:menu="@menu/menubottom"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
