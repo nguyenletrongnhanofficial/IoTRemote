@@ -16,6 +16,17 @@
         app:layout_constraintTop_toTopOf="parent" >
     </org.osmdroid.views.MapView>
 
+    <com.alan.alansdk.button.AlanButton
+        android:id="@+id/alan_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
+        app:button_horizontal_align="right"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
