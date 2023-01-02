@@ -26,12 +26,14 @@ public class SliderAdapter extends PagerAdapter {
                     R.drawable.map,
                     R.drawable.view_map,
                     R.drawable.chart,
+                    R.drawable.voice_assistant
             };
     int headings[]=
             {
                     R.string.hd_map,
                     R.string.hd_viewmap,
                     R.string.hd_chart,
+                    R.string.hd_ai
             };
 
     int descriptions[]=
@@ -39,6 +41,7 @@ public class SliderAdapter extends PagerAdapter {
                     R.string.derc_map,
                     R.string.derc_view_map,
                     R.string.derc_chart,
+                    R.string.derc_ai
             };
 
     @Override
